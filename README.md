@@ -7,6 +7,8 @@
 
 ## Usage
 
+By default, `rchooks` looks for an environment file path specified by the `ENV_PATH` environment variable or a `.env` file in the current working directory. You can also explicitly specify a `.env` file with the `--env` path parameter.
+
 ```
 $ rchooks --list
 $ rchooks --create=https://example.com/webhook
