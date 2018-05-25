@@ -28,6 +28,14 @@ $ rchooks --delete=11112222-3333-4444-5555-66667777888
 $ rchooks --env=~/.env --list
 ```
 
+## Notes
+
+### Blacklist Reasons
+
+* `I/O operation is failed. Details: [Read timed out]`
+* `Webhook response exceeds max size. Read bytes count: [1024]`
+* `Webhook responses with code: [404], reason: [Not Found]`
+
  [build-status-svg]: https://api.travis-ci.org/grokify/rchooks.svg?branch=master
  [build-status-link]: https://travis-ci.org/grokify/rchooks
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/rchooks
