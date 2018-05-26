@@ -80,6 +80,10 @@ func main() {
 		fmt.Printf("Using .env file [%v]\n", opts.EnvFile)
 	}
 
+	if len(opts.List) > 0 {
+		handleResponse(rchooksUtil.GetSubscriptions(ctx))
+	}
+
 	if len(opts.Create) > 0 {
 		req.DeliveryMode.Address = opts.Create
 		handleResponse(rchooksUtil.CreateSubscription(ctx, req))
@@ -87,10 +91,6 @@ func main() {
 
 	if len(opts.Delete) > 0 {
 		handleResponse(rchooksUtil.DeleteByIdOrUrl(ctx, opts.Delete))
-	}
-
-	if len(opts.List) > 0 {
-		handleResponse(rchooksUtil.GetSubscriptions(ctx))
 	}
 
 	if len(opts.Recreate) > 0 {
