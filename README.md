@@ -38,6 +38,19 @@ $ rchooks --env=~/.env --list
 
 ### Installation
 
+Build the lambda function and then upload to AWS:
+
+```
+$ cd $GOPATH/src/github.com/grokify/rchooks/apps/keepalive_lambda
+$ sh build_lambda.sh
+```
+
+Set the following enviroment variables:
+
+* `RINGCENTRAL_TOKEN_JSON`
+* `RINGCENTRAL_SERVER_URL`
+* `RINGCENTRAL_WEBHOOK_DEFINITION_JSON`
+
 ## Notes
 
 ### Blacklist Reasons
