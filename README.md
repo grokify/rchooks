@@ -5,16 +5,22 @@
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
 
-`rchooks` is a CLI app for creating, listing, recreating, and deleting RingCentral webhooks. It is especially useful in development when working with ngrok and when webhooks are blocked when test servers are taken down and non-responsive.
+`rchooks` is a toolset for creating, listing, recreating, and deleting RingCentral webhooks. It is especially useful in development when working with ngrok and when webhooks are blocked when test servers are taken down and non-responsive. It includes the following:
 
-## Installation
+* `rchooks` CLI app
+* `keepalive_lambda` AWS Lambda function to check and rebuild webhook when blacklisted
+* `rchooks` package for utilities to build your own apps
+
+## CLI App
+
+### CLI Installation
 
 ```
-$ go get https://github.com/grokify/rchooks
+$ go get https://github.com/grokify/rchooks/app/rchooks
 $ rchooks --env=/path/to/.env --list
 ```
 
-## Usage
+### CLI Usage
 
 By default, `rchooks` looks for an environment file path specified by the `ENV_PATH` environment variable or a `.env` file in the current working directory. You can also explicitly specify a `.env` file with the `--env` path parameter.
 
@@ -27,6 +33,10 @@ $ rchooks --delete=https://example.com/webhook
 $ rchooks --delete=11112222-3333-4444-5555-66667777888
 $ rchooks --env=~/.env --list
 ```
+
+## Keepalive Lambda Function
+
+### Installation
 
 ## Notes
 

@@ -2,3 +2,5 @@
 .env
 _*
 coverage.txt
+main
+main.zip
