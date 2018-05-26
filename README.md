@@ -16,7 +16,7 @@
 ### CLI Installation
 
 ```
-$ go get https://github.com/grokify/rchooks/app/rchooks
+$ go get github.com/grokify/rchooks/apps/rchooks
 $ rchooks --env=/path/to/.env --list
 ```
 
