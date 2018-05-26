@@ -22,27 +22,27 @@ func ParseCreateSubscriptionRequest(data []byte) (rc.CreateSubscriptionRequest, 
 	return req, err
 }
 
-type RingCentralApiWebhookUtil struct {
+type RcHooks struct {
 	Client *rc.APIClient
 }
 
-func (util *RingCentralApiWebhookUtil) GetSubscriptions(ctx context.Context) (rc.RecordsCollectionResourceSubscriptionResponse, error) {
+func (util *RcHooks) GetSubscriptions(ctx context.Context) (rc.RecordsCollectionResourceSubscriptionResponse, error) {
 	info, resp, err := util.Client.PushNotificationsApi.GetSubscriptions(ctx)
 	return info, hum.ConsolidateErrorRespCodeGte300(resp, err, "ERROR - Get Subscriptions API")
 }
 
-func (util *RingCentralApiWebhookUtil) CreateSubscription(ctx context.Context, req rc.CreateSubscriptionRequest) (rc.SubscriptionInfo, error) {
+func (util *RcHooks) CreateSubscription(ctx context.Context, req rc.CreateSubscriptionRequest) (rc.SubscriptionInfo, error) {
 	info, resp, err := util.Client.PushNotificationsApi.CreateSubscription(ctx, req)
 	return info, hum.ConsolidateErrorRespCodeGte300(resp, err, "ERROR - Create Subscription API")
 }
 
-func (util *RingCentralApiWebhookUtil) DeleteSubscription(ctx context.Context, subscriptionId string) error {
+func (util *RcHooks) DeleteSubscription(ctx context.Context, subscriptionId string) error {
 	resp, err := util.Client.PushNotificationsApi.DeleteSubscription(ctx, subscriptionId)
 	return hum.ConsolidateErrorRespCodeGte300(resp, err,
 		fmt.Sprintf("ERROR - Dete Subscription API id [%v]", subscriptionId))
 }
 
-func (util *RingCentralApiWebhookUtil) DeleteBlacklisted(ctx context.Context, matches []rc.SubscriptionResponse) ([]rc.SubscriptionResponse, error) {
+func (util *RcHooks) DeleteBlacklisted(ctx context.Context, matches []rc.SubscriptionResponse) ([]rc.SubscriptionResponse, error) {
 	goodMatches := []rc.SubscriptionResponse{}
 
 	for _, match := range matches {
@@ -74,7 +74,7 @@ func FilterSubscriptionsForRequest(ress []rc.SubscriptionResponse, req rc.Create
 	return matches
 }
 
-func (util *RingCentralApiWebhookUtil) RecreateSubscriptionIdOrUrl(ctx context.Context, subIdOrUrl string) ([]rc.SubscriptionInfo, error) {
+func (util *RcHooks) RecreateSubscriptionIdOrUrl(ctx context.Context, subIdOrUrl string) ([]rc.SubscriptionInfo, error) {
 	recreated := []rc.SubscriptionInfo{}
 
 	subs, err := util.GetSubscriptions(ctx)
@@ -107,7 +107,7 @@ func (util *RingCentralApiWebhookUtil) RecreateSubscriptionIdOrUrl(ctx context.C
 	return recreated, nil
 }
 
-func (util *RingCentralApiWebhookUtil) CheckAndFixSubscription(ctx context.Context, req rc.CreateSubscriptionRequest) (rc.SubscriptionInfo, error) {
+func (util *RcHooks) CheckAndFixSubscription(ctx context.Context, req rc.CreateSubscriptionRequest) (rc.SubscriptionInfo, error) {
 	recreated := rc.SubscriptionInfo{}
 
 	subs, err := util.GetSubscriptions(ctx)
@@ -125,7 +125,7 @@ func (util *RingCentralApiWebhookUtil) CheckAndFixSubscription(ctx context.Conte
 	return recreated, nil
 }
 
-func (util *RingCentralApiWebhookUtil) DeleteByIdOrUrl(ctx context.Context, idOrUrlToDelete string) ([]rc.SubscriptionResponse, error) {
+func (util *RcHooks) DeleteByIdOrUrl(ctx context.Context, idOrUrlToDelete string) ([]rc.SubscriptionResponse, error) {
 	deleted := []rc.SubscriptionResponse{}
 	info, err := util.GetSubscriptions(ctx)
 	if err != nil {

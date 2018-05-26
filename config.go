@@ -25,8 +25,8 @@ func NewRcHooksConfigEnv(envTokenJson, envServerUrl, envHookDef string) RcHooksC
 		WebhookDefinitionJson: os.Getenv(envHookDef)}
 }
 
-func (appCfg *RcHooksConfig) InitilizeRcHooks(ctx context.Context) (RingCentralApiWebhookUtil, error) {
-	rchooksUtil := RingCentralApiWebhookUtil{}
+func (appCfg *RcHooksConfig) InitilizeRcHooks(ctx context.Context) (RcHooks, error) {
+	rchooksUtil := RcHooks{}
 
 	if req, err := ParseCreateSubscriptionRequest([]byte(appCfg.WebhookDefinitionJson)); err != nil {
 		return rchooksUtil, errors.Wrap(err, "Parse subscription definition")
