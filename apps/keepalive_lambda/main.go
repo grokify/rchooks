@@ -10,11 +10,10 @@ import (
 )
 
 func checkAndFixSubscription() (string, error) {
-	ctx := context.Background()
-
 	appCfg := rchooks.NewRcHooksConfigEnv(
 		"RINGCENTRAL_TOKEN_JSON", "RINGCENTRAL_SERVER_URL", "RINGCENTRAL_WEBHOOK_DEFINITION_JSON")
 
+	ctx := context.Background()
 	if rchooksUtil, err := appCfg.InitilizeRcHooks(ctx); err != nil {
 		return "", errors.Wrap(err, "InitilizeRcHooks")
 	} else if _, err := rchooksUtil.CheckAndFixSubscription(ctx, appCfg.WebhookDefinition); err != nil {
