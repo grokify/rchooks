@@ -18,11 +18,11 @@ type RcHooksConfig struct {
 	WebhookDefinition     rc.CreateSubscriptionRequest
 }
 
-func NewRcHooksConfigEnv(envTokenJson, envServerUrl, envHookDef string) RcHooksConfig {
+func NewRcHooksConfigEnv(envVarTokenJson, envVarServerUrl, envVarHookDef string) RcHooksConfig {
 	return RcHooksConfig{
-		TokenJson:             os.Getenv(envTokenJson),
-		ServerUrl:             os.Getenv(envServerUrl),
-		WebhookDefinitionJson: os.Getenv(envHookDef)}
+		TokenJson:             os.Getenv(envVarTokenJson),
+		ServerUrl:             os.Getenv(envVarServerUrl),
+		WebhookDefinitionJson: os.Getenv(envVarHookDef)}
 }
 
 func (appCfg *RcHooksConfig) InitilizeRcHooks(ctx context.Context) (RcHooks, error) {
