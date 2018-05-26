@@ -24,6 +24,7 @@ func checkAndFixSubscription() (string, error) {
 	}
 }
 
+// main Lambda Function should be called with CloudWatch Event Rule
 func main() {
 	// Make the handler available for Remote Procedure Call by AWS Lambda
 	lambda.Start(checkAndFixSubscription)
