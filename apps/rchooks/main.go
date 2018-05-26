@@ -27,6 +27,13 @@ type Options struct {
 
 func isUrl(s string) bool { return regexp.MustCompile(`^https?://`).MatchString(strings.ToLower(s)) }
 
+func handleResponse(info interface{}, err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmtutil.PrintJSON(info)
+}
+
 // This code takes a bot token and creates a permanent webhook.
 func main() {
 	opts := Options{}
@@ -75,36 +82,19 @@ func main() {
 
 	if len(opts.Create) > 0 {
 		req.DeliveryMode.Address = opts.Create
-
-		info, err := rchooksUtil.CreateSubscription(ctx, req)
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmtutil.PrintJSON(info)
+		handleResponse(rchooksUtil.CreateSubscription(ctx, req))
 	}
 
 	if len(opts.Delete) > 0 {
-		info, err := rchooksUtil.DeleteByIdOrUrl(ctx, opts.Delete)
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmtutil.PrintJSON(info)
+		handleResponse(rchooksUtil.DeleteByIdOrUrl(ctx, opts.Delete))
 	}
 
 	if len(opts.List) > 0 {
-		info, err := rchooksUtil.GetSubscriptions(ctx)
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmtutil.PrintJSON(info)
+		handleResponse(rchooksUtil.GetSubscriptions(ctx))
 	}
 
 	if len(opts.Recreate) > 0 {
-		info, err := rchooksUtil.RecreateSubscriptionIdOrUrl(ctx, opts.Recreate)
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmtutil.PrintJSON(info)
+		handleResponse(rchooksUtil.RecreateSubscriptionIdOrUrl(ctx, opts.Recreate))
 	}
 
 	fmt.Println("DONE")
