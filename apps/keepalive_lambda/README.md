@@ -14,9 +14,11 @@ $ sh build_lambda.sh
 
 Set the following enviroment variables:
 
-* `RINGCENTRAL_TOKEN_JSON`
-* `RINGCENTRAL_SERVER_URL`
-* `RINGCENTRAL_WEBHOOK_DEFINITION_JSON`
+| Variable | Description |
+|----------|-------------|
+| `RINGCENTRAL_TOKEN_JSON` | Permanent token |
+| `RINGCENTRAL_SERVER_URL` | API Server URL, e.g. `https://platform.ringcentral.com` |
+| `RINGCENTRAL_WEBHOOK_DEFINITION_JSON` | Webhook definition, e.g. create webhook request |
 
 ### Configuration
 
