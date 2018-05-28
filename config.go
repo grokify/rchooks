@@ -12,15 +12,15 @@ import (
 )
 
 type RcHooksConfig struct {
-	TokenJson             string `env:"RINGCENTRAL_TOKEN_JSON"`
+	Token                 string `env:"RINGCENTRAL_TOKEN"`
 	ServerUrl             string `env:"RINGCENTRAL_SERVER_URL"`
 	WebhookDefinitionJson string `env:"RINGCENTRAL_WEBHOOK_DEFINITION_JSON"`
 	WebhookDefinition     rc.CreateSubscriptionRequest
 }
 
-func NewRcHooksConfigEnv(envVarTokenJson, envVarServerUrl, envVarHookDef string) RcHooksConfig {
+func NewRcHooksConfigEnv(envVarTokenOrJson, envVarServerUrl, envVarHookDef string) RcHooksConfig {
 	return RcHooksConfig{
-		TokenJson:             os.Getenv(envVarTokenJson),
+		Token:                 os.Getenv(envVarTokenOrJson),
 		ServerUrl:             os.Getenv(envVarServerUrl),
 		WebhookDefinitionJson: os.Getenv(envVarHookDef)}
 }
@@ -34,7 +34,7 @@ func (appCfg *RcHooksConfig) InitilizeRcHooks(ctx context.Context) (RcHooks, err
 		appCfg.WebhookDefinition = req
 	}
 
-	if httpClient, err := om.NewClientTokenJSON(ctx, []byte(appCfg.TokenJson)); err != nil {
+	if httpClient, err := om.NewClientBearerTokenSimpleOrJson(ctx, []byte(appCfg.Token)); err != nil {
 		return rchooksUtil, errors.Wrap(err, "New client token")
 	} else if apiClient, err := ru.NewApiClientHttpClientBaseURL(
 		httpClient, appCfg.ServerUrl); err != nil {

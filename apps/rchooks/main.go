@@ -67,7 +67,10 @@ func main() {
 
 	ctx := context.Background()
 
-	appCfg := rchooks.NewRcHooksConfigEnv("RINGCENTRAL_TOKEN_JSON", "RINGCENTRAL_SERVER_URL", "RINGCENTRAL_WEBHOOK_DEFINITION_JSON")
+	appCfg := rchooks.NewRcHooksConfigEnv(
+		"RINGCENTRAL_TOKEN",
+		"RINGCENTRAL_SERVER_URL",
+		"RINGCENTRAL_WEBHOOK_DEFINITION_JSON")
 
 	rchooksUtil, err := appCfg.InitilizeRcHooks(ctx)
 	if err != nil {
