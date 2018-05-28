@@ -157,3 +157,7 @@ func NewCreateSubscriptionRequestPermahook(eventFilters []string, hookUrl string
 			Address:       hookUrl},
 		ExpiresIn: int32(500000000)}
 }
+
+func NewCreateSubscriptionRequestPermahookBotSimple(hookUrl string) rc.CreateSubscriptionRequest {
+	return NewCreateSubscriptionRequestPermahook([]string{"/restapi/v1.0/glip/posts"}, hookUrl)
+}
