@@ -11,7 +11,7 @@ import (
 
 func checkAndFixSubscription() (string, error) {
 	appCfg := rchooks.NewRcHooksConfigEnv(
-		"RINGCENTRAL_TOKEN_JSON", "RINGCENTRAL_SERVER_URL", "RINGCENTRAL_WEBHOOK_DEFINITION_JSON")
+		"RINGCENTRAL_TOKEN", "RINGCENTRAL_SERVER_URL", "RINGCENTRAL_WEBHOOK_DEFINITION_JSON")
 
 	ctx := context.Background()
 	if rchooksUtil, err := appCfg.InitilizeRcHooks(ctx); err != nil {

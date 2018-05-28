@@ -9,18 +9,20 @@
 
 * `rchooks` CLI app
 * `keepalive_lambda` AWS Lambda function to check and rebuild webhook when blacklisted
-* `rchooks` package for utilities to build your own apps
+* `rchooks` SDK package for utilities to build your own apps
 
-## CLI App
+## Apps
 
-### CLI Installation
+### CLI App
+
+#### CLI Installation
 
 ```
 $ go get github.com/grokify/rchooks/apps/rchooks
 $ rchooks --env=/path/to/.env --list
 ```
 
-### CLI Usage
+#### CLI Usage
 
 By default, `rchooks` looks for an environment file path specified by the `ENV_PATH` environment variable or a `.env` file in the current working directory. You can also explicitly specify a `.env` file with the `--env` path parameter.
 
@@ -34,9 +36,15 @@ $ rchooks --delete=11112222-3333-4444-5555-66667777888
 $ rchooks --env=~/.env --list
 ```
 
-## Keepalive Lambda Function
+Set the following enviroment variables:
 
-### Installation
+* `RINGCENTRAL_TOKEN` - JSON string or simple access token string
+* `RINGCENTRAL_SERVER_URL`
+* `RINGCENTRAL_WEBHOOK_DEFINITION_JSON` - Create subscription JSON body
+
+### Keepalive Lambda Function
+
+#### Installation
 
 Build the lambda function and then upload to AWS:
 
@@ -48,9 +56,9 @@ $ sh build_lambda.sh
 
 Set the following enviroment variables:
 
-* `RINGCENTRAL_TOKEN_JSON`
+* `RINGCENTRAL_TOKEN` - JSON string or simple access token string
 * `RINGCENTRAL_SERVER_URL`
-* `RINGCENTRAL_WEBHOOK_DEFINITION_JSON`
+* `RINGCENTRAL_WEBHOOK_DEFINITION_JSON` - Create subscription JSON body
 
 ## Notes
 
