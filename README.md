@@ -4,12 +4,15 @@
 [![Go Report Card][goreport-svg]][goreport-link]
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
+[![Video][video-svg]][video-link]
 
 `rchooks` is a toolset for creating, listing, recreating, and deleting RingCentral webhooks. It is especially useful in development when working with ngrok and when webhooks are blocked when test servers are taken down and non-responsive. It includes the following:
 
 * `rchooks` CLI app
 * `keepalive_lambda` AWS Lambda function to check and rebuild webhook when blacklisted
 * `rchooks` SDK package for utilities to build your own apps
+
+YouTube Tutorial Video: https://youtu.be/DYrzzJe8OyI
 
 ## Apps
 
@@ -76,3 +79,5 @@ Set the following enviroment variables:
  [docs-godoc-link]: https://godoc.org/github.com/grokify/rchooks
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
  [license-link]: https://github.com/grokify/rchooks/blob/master/LICENSE.md
+ [video-svg]: https://img.shields.io/badge/YouTube-tutorial-red.svg
+ [video-link]: https://youtu.be/DYrzzJe8OyI
