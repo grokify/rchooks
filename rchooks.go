@@ -152,7 +152,7 @@ func (util *RcHooks) DeleteByIdOrUrl(ctx context.Context, idOrUrlToDelete string
 func NewCreateSubscriptionRequestPermahook(eventFilters []string, hookUrl string) rc.CreateSubscriptionRequest {
 	return rc.CreateSubscriptionRequest{
 		EventFilters: eventFilters,
-		DeliveryMode: &rc.NotificationDeliveryModeRequest{
+		DeliveryMode: rc.NotificationDeliveryModeRequest{
 			TransportType: "WebHook",
 			Address:       hookUrl},
 		ExpiresIn: int32(500000000)}
