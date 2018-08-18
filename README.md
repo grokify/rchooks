@@ -79,5 +79,5 @@ Set the following enviroment variables:
  [docs-godoc-link]: https://godoc.org/github.com/grokify/rchooks
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
  [license-link]: https://github.com/grokify/rchooks/blob/master/LICENSE.md
- [video-svg]: https://img.shields.io/badge/tutorial-YouTube-red.svg
+ [video-svg]: https://img.shields.io/badge/tutorial-YouTube-blue.svg
  [video-link]: https://youtu.be/DYrzzJe8OyI
