@@ -45,6 +45,24 @@ Set the following enviroment variables:
 * `RINGCENTRAL_SERVER_URL`
 * `RINGCENTRAL_WEBHOOK_DEFINITION_JSON` - Create subscription JSON body
 
+##### Example Webhook Definition
+
+An example value for `RINGCENTRAL_WEBHOOK_DEFINITION_JSON` can be the following. For a long lived webhook, use a value like `500000000` seconds which is equivalent to 15.85 years.
+
+```
+{
+  "eventFilters":[
+    "/restapi/v1.0/glip/posts",
+    "/restapi/v1.0/glip/groups",
+  ],
+  "deliveryMode":{
+    "transportType":"WebHook",
+    "address":"https://12345678.execute-api.us-east-1.amazonaws.com/prod/webhook"
+  },
+  "expiresIn":500000000
+ }
+```
+
 ### Keepalive Lambda Function
 
 #### Installation
