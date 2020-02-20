@@ -54,6 +54,7 @@ An example value for `RINGCENTRAL_WEBHOOK_DEFINITION_JSON` can be the following.
   "eventFilters":[
     "/restapi/v1.0/glip/posts",
     "/restapi/v1.0/glip/groups",
+    "/restapi/v1.0/account/~/extension/~/message-store/instant?type=SMS"
   ],
   "deliveryMode":{
     "transportType":"WebHook",
@@ -62,6 +63,10 @@ An example value for `RINGCENTRAL_WEBHOOK_DEFINITION_JSON` can be the following.
   "expiresIn":500000000
  }
 ```
+
+Compact example:
+
+`{"eventFilters":["/restapi/v1.0/glip/posts","/restapi/v1.0/glip/groups","/restapi/v1.0/account/~/extension/~/message-store/instant?type=SMS"],"deliveryMode":{"transportType":"WebHook","address":"https://12345678.execute-api.us-east-1.amazonaws.com/prod/webhook"},"expiresIn":500000000}`
 
 ### Keepalive Lambda Function
 
