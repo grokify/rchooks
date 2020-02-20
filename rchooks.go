@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"strings"
 
-	rc "github.com/grokify/go-ringcentral/client"
+	rc "github.com/grokify/go-ringcentral/office/v1/client"
 	hum "github.com/grokify/gotilla/net/httputilmore"
-	"github.com/grokify/gotilla/strings/stringsutil"
+	"github.com/grokify/gotilla/type/stringsutil"
 )
 
 const (

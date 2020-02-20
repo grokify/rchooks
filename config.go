@@ -7,8 +7,8 @@ import (
 	om "github.com/grokify/oauth2more"
 	"github.com/pkg/errors"
 
-	rc "github.com/grokify/go-ringcentral/client"
-	ru "github.com/grokify/go-ringcentral/clientutil"
+	rc "github.com/grokify/go-ringcentral/office/v1/client"
+	ru "github.com/grokify/go-ringcentral/office/v1/util"
 )
 
 type RcHooksConfig struct {
