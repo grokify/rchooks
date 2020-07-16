@@ -10,6 +10,7 @@ import (
 
 	"github.com/grokify/gotilla/config"
 	"github.com/grokify/gotilla/fmt/fmtutil"
+	"github.com/grokify/oauth2more/ringcentral"
 	"github.com/jessevdk/go-flags"
 
 	"github.com/grokify/rchooks"
@@ -18,6 +19,7 @@ import (
 type Options struct {
 	EnvFile   string `short:"e" long:"env" description:"Env filepath"`
 	WhichEnv  []bool `short:"w" long:"which" description:"Which .env path"`
+	NewToken  []bool `short:"n" long:"newToken" description:"Get New Token"`
 	List      []bool `short:"l" long:"list" description:"List subscriptions"`
 	Create    string `short:"c" long:"create" description:"Create subscription"`
 	CreateEnv []bool `long:"createenv" description:"Create subscription from environment"`
@@ -34,6 +36,13 @@ func handleResponse(info interface{}, err error) {
 	fmtutil.PrintJSON(info)
 }
 
+func GetCredentials() (ringcentral.Credentials, error) {
+	return ringcentral.NewCredentialsJSONs(
+		[]byte(os.Getenv("RC_APP")),
+		[]byte(os.Getenv("RC_USER")),
+		[]byte(os.Getenv("RINGCENTRAL_TOKEN")))
+}
+
 // This code takes a bot token and creates a permanent webhook.
 func main() {
 	opts := Options{}
@@ -45,18 +54,28 @@ func main() {
 	err = config.LoadEnvPathsPrioritized(opts.EnvFile, os.Getenv("ENV_PATH"))
 	if err != nil {
 		fmt.Printf("E [%v] ENV [%v]\n", opts.EnvFile, os.Getenv("ENV_PATH"))
-		fmt.Println("H")
 		log.Fatal(err)
+	}
+
+	creds, err := GetCredentials()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if len(opts.NewToken) > 0 {
+		_, err = creds.NewToken()
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	ctx := context.Background()
 
-	appCfg := rchooks.NewRcHooksConfigEnv(
-		"RINGCENTRAL_TOKEN",
-		"RINGCENTRAL_SERVER_URL",
-		"RINGCENTRAL_WEBHOOK_DEFINITION_JSON")
+	appCfg := rchooks.NewRcHooksConfigCreds(
+		creds,
+		os.Getenv("RINGCENTRAL_WEBHOOK_DEFINITION_JSON"))
 
-	rchooksUtil, err := appCfg.InitilizeRcHooks(ctx)
+	rch, err := appCfg.InitilizeRcHooks(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -68,24 +87,24 @@ func main() {
 	}
 
 	if len(opts.List) > 0 {
-		handleResponse(rchooksUtil.GetSubscriptions(ctx))
+		handleResponse(rch.GetSubscriptions(ctx))
 	}
 
 	if len(opts.CreateEnv) > 0 {
-		handleResponse(rchooksUtil.CreateSubscription(ctx, req))
+		handleResponse(rch.CreateSubscription(ctx, req))
 	}
 
 	if len(opts.Create) > 0 {
 		req.DeliveryMode.Address = opts.Create
-		handleResponse(rchooksUtil.CreateSubscription(ctx, req))
+		handleResponse(rch.CreateSubscription(ctx, req))
 	}
 
 	if len(opts.Delete) > 0 {
-		handleResponse(rchooksUtil.DeleteByIdOrUrl(ctx, opts.Delete))
+		handleResponse(rch.DeleteByIdOrUrl(ctx, opts.Delete))
 	}
 
 	if len(opts.Recreate) > 0 {
-		handleResponse(rchooksUtil.RecreateSubscriptionIdOrUrl(ctx, opts.Recreate))
+		handleResponse(rch.RecreateSubscriptionIdOrUrl(ctx, opts.Recreate))
 	}
 
 	fmt.Println("DONE")
