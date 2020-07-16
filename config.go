@@ -71,8 +71,9 @@ func (rchConfig *RcHooksConfig) InitilizeRcHooks(ctx context.Context) (RcHooks, 
 	rchooksUtil := RcHooks{}
 
 	err := rchConfig.Inflate()
-
-	// mt.Printf("RCHOOKS_INIT: [%v]\n", rchConfig.Token)
+	if err != nil {
+		return rchooksUtil, err
+	}
 
 	httpClient, err := rchConfig.Client()
 	if err != nil {
