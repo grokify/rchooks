@@ -7,8 +7,10 @@ import (
 	"strings"
 
 	rc "github.com/grokify/go-ringcentral/office/v1/client"
+	clientutil "github.com/grokify/go-ringcentral/office/v1/util"
 	hum "github.com/grokify/gotilla/net/httputilmore"
 	"github.com/grokify/gotilla/type/stringsutil"
+	"github.com/pkg/errors"
 )
 
 const (
@@ -28,11 +30,19 @@ type RcHooks struct {
 
 func (util *RcHooks) GetSubscriptions(ctx context.Context) (rc.RecordsCollectionResourceSubscriptionResponse, error) {
 	info, resp, err := util.Client.PushNotificationsApi.GetSubscriptions(ctx)
+	if err != nil && resp.StatusCode >= 300 {
+		err = errors.Wrap(err, string(clientutil.ApiResponseErrorBody(err)))
+	}
 	return info, hum.ConsolidateErrorRespCodeGte300(resp, err, "ERROR - Get Subscriptions API")
 }
 
 func (util *RcHooks) CreateSubscription(ctx context.Context, req rc.CreateSubscriptionRequest) (rc.SubscriptionInfo, error) {
 	info, resp, err := util.Client.PushNotificationsApi.CreateSubscription(ctx, req)
+
+	if err != nil && resp.StatusCode >= 300 {
+		err = errors.Wrap(err, string(clientutil.ApiResponseErrorBody(err)))
+	}
+
 	return info, hum.ConsolidateErrorRespCodeGte300(resp, err, "ERROR - Create Subscription API")
 }
 
