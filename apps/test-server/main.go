@@ -12,6 +12,8 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	validationToken := "Validation-Token"
 	if len(r.Header.Get(validationToken)) > 0 {
 		w.Header().Set(validationToken, r.Header.Get(validationToken))
+		log.Infof("INCOMING_WEBHOOK_VALIDATION_TOKEN [%v]", r.Header.Get(validationToken))
+		return
 	}
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
