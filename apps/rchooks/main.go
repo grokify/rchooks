@@ -69,11 +69,16 @@ func main() {
 		}
 	}
 
+	hookdef := os.Getenv("RINGCENTRAL_WEBHOOK_DEFINITION_JSON")
+
+	fmtutil.PrintJSON(creds)
+	fmtutil.PrintJSON(hookdef)
+
 	ctx := context.Background()
 
 	appCfg := rchooks.NewRcHooksConfigCreds(
 		creds,
-		os.Getenv("RINGCENTRAL_WEBHOOK_DEFINITION_JSON"))
+		hookdef)
 
 	rch, err := appCfg.InitilizeRcHooks(ctx)
 	if err != nil {
