@@ -8,10 +8,10 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/grokify/gotilla/config"
-	"github.com/grokify/gotilla/encoding/jsonutil"
-	"github.com/grokify/gotilla/fmt/fmtutil"
 	"github.com/grokify/oauth2more/ringcentral"
+	"github.com/grokify/simplego/config"
+	"github.com/grokify/simplego/encoding/jsonutil"
+	"github.com/grokify/simplego/fmt/fmtutil"
 	"github.com/jessevdk/go-flags"
 
 	rchooks "github.com/grokify/ringcentral-webhooks"
@@ -41,7 +41,7 @@ func handleResponse(info interface{}, err error) {
 
 func GetCredentials(opts Options) (ringcentral.Credentials, error) {
 	if len(opts.CredsPath) > 0 {
-		credsSet, err := ringcentral.ReadCredentialsSetFile(opts.CredsPath)
+		credsSet, err := ringcentral.ReadFileCredentialsSet(opts.CredsPath)
 		if err != nil {
 			return ringcentral.Credentials{}, err
 		}

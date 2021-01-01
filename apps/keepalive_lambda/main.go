@@ -5,7 +5,7 @@ import (
 	"context"
 
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/grokify/rchooks"
+	rchooks "github.com/grokify/ringcentral-webhooks"
 	"github.com/pkg/errors"
 )
 
