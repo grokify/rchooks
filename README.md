@@ -1,10 +1,10 @@
 # RCHooks - RingCentral Webhook Tools
 
-[![Build Status][build-status-svg]][build-status-link]
-[![Go Report Card][goreport-svg]][goreport-link]
-[![Docs][docs-godoc-svg]][docs-godoc-link]
-[![License][license-svg]][license-link]
-[![Video][video-svg]][video-link]
+[![Build Status][build-status-svg]][build-status-url]
+[![Go Report Card][goreport-svg]][goreport-url]
+[![Docs][docs-godoc-svg]][docs-godoc-url]
+[![License][license-svg]][license-url]
+[![Video][video-svg]][video-url]
 
 `rchooks` is a toolset for creating, listing, recreating, and deleting RingCentral webhooks. It is especially useful in development when working with ngrok and when webhooks are blocked when test servers are taken down and non-responsive. It includes the following:
 
@@ -94,13 +94,13 @@ Set the following enviroment variables:
 * `Webhook response exceeds max size. Read bytes count: [1024]`
 * `Webhook responses with code: [404], reason: [Not Found]`
 
- [build-status-svg]: https://api.travis-ci.org/grokify/rchooks.svg?branch=master
- [build-status-link]: https://travis-ci.org/grokify/rchooks
- [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/rchooks
- [goreport-link]: https://goreportcard.com/report/github.com/grokify/rchooks
+ [build-status-svg]: https://github.com/grokify/ringcentral-webhooks/workflows/build/badge.svg
+ [build-status-url]: https://github.com/grokify/ringcentral-webhooks/actions
+ [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/ringcentral-webhooks
+ [goreport-url]: https://goreportcard.com/report/github.com/grokify/ringcentral-webhooks
  [docs-godoc-svg]: https://img.shields.io/badge/docs-godoc-blue.svg
- [docs-godoc-link]: https://godoc.org/github.com/grokify/rchooks
+ [docs-godoc-url]: https://godoc.org/github.com/grokify/ringcentral-webhooks
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-link]: https://github.com/grokify/rchooks/blob/master/LICENSE.md
+ [license-url]: https://github.com/grokify/ringcentral-webhooks/blob/master/LICENSE.md
  [video-svg]: https://img.shields.io/badge/tutorial-YouTube-blue.svg
- [video-link]: https://youtu.be/DYrzzJe8OyI
+ [video-url]: https://youtu.be/DYrzzJe8OyI
