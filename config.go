@@ -22,14 +22,21 @@ type RcHooksConfig struct {
 	WebhookDefinition     rc.CreateSubscriptionRequest
 }
 
-func NewRcHooksConfigCreds(creds ringcentral.Credentials, hookDefJson string) RcHooksConfig {
+func NewRcHooksConfigCreds(creds ringcentral.Credentials, hookDefJson string) (RcHooksConfig, error) {
 	cfg := RcHooksConfig{
 		ServerUrl:             creds.Application.ServerURL,
 		WebhookDefinitionJson: hookDefJson}
+	if creds.Token == nil {
+		tok, err := creds.NewToken()
+		if err != nil {
+			return cfg, err
+		}
+		creds.Token = tok
+	}
 	if creds.Token != nil {
 		cfg.Token = strings.TrimSpace(creds.Token.AccessToken)
 	}
-	return cfg
+	return cfg, nil
 }
 
 func NewRcHooksConfigEnv(envVarTokenOrJson, envVarServerUrl, envVarHookDef string) RcHooksConfig {

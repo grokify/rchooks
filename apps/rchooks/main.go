@@ -9,14 +9,17 @@ import (
 	"strings"
 
 	"github.com/grokify/gotilla/config"
+	"github.com/grokify/gotilla/encoding/jsonutil"
 	"github.com/grokify/gotilla/fmt/fmtutil"
 	"github.com/grokify/oauth2more/ringcentral"
 	"github.com/jessevdk/go-flags"
 
-	"github.com/grokify/rchooks"
+	rchooks "github.com/grokify/ringcentral-webhooks"
 )
 
 type Options struct {
+	CredsPath string `long:"creds" description:"Credentials filepath"`
+	CredsUser string `long:"user" description:"Credentials user key"`
 	EnvFile   string `short:"e" long:"env" description:"Env filepath"`
 	WhichEnv  []bool `short:"w" long:"which" description:"Which .env path"`
 	NewToken  []bool `short:"n" long:"newToken" description:"Get New Token"`
@@ -36,7 +39,14 @@ func handleResponse(info interface{}, err error) {
 	fmtutil.PrintJSON(info)
 }
 
-func GetCredentials() (ringcentral.Credentials, error) {
+func GetCredentials(opts Options) (ringcentral.Credentials, error) {
+	if len(opts.CredsPath) > 0 {
+		credsSet, err := ringcentral.ReadCredentialsSetFile(opts.CredsPath)
+		if err != nil {
+			return ringcentral.Credentials{}, err
+		}
+		return credsSet.Get(opts.CredsUser)
+	}
 	return ringcentral.NewCredentialsJSONs(
 		[]byte(os.Getenv("RC_APP")),
 		[]byte(os.Getenv("RC_USER")),
@@ -51,13 +61,15 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = config.LoadEnvPathsPrioritized(opts.EnvFile, os.Getenv("ENV_PATH"))
-	if err != nil {
-		fmt.Printf("E [%v] ENV [%v]\n", opts.EnvFile, os.Getenv("ENV_PATH"))
-		log.Fatal(err)
+	if len(opts.CredsPath) == 0 {
+		err = config.LoadEnvPathsPrioritized(opts.EnvFile, os.Getenv("ENV_PATH"))
+		if err != nil {
+			fmt.Printf("E [%v] ENV [%v]\n", opts.EnvFile, os.Getenv("ENV_PATH"))
+			log.Fatal(err)
+		}
 	}
 
-	creds, err := GetCredentials()
+	creds, err := GetCredentials(opts)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -71,14 +83,25 @@ func main() {
 
 	hookdef := os.Getenv("RINGCENTRAL_WEBHOOK_DEFINITION_JSON")
 
+	if 1 == 1 {
+		hook := rchooks.WebhookDefinitionThin{
+			URL: "https://320ea976a693.ngrok.io/webhook",
+			EventFilters: []string{
+				"/restapi/v1.0/account/~/a2p-sms/messages?direction=Inbound",
+				"/restapi/v1.0/account/~/a2p-sms/batch",
+				"/restapi/v1.0/account/~/a2p-sms/opt-outs"}}
+		hookdef = string(jsonutil.MustMarshal(hook.Full(), true))
+	}
+
 	fmtutil.PrintJSON(creds)
 	fmtutil.PrintJSON(hookdef)
 
 	ctx := context.Background()
 
-	appCfg := rchooks.NewRcHooksConfigCreds(
-		creds,
-		hookdef)
+	appCfg, err := rchooks.NewRcHooksConfigCreds(creds, hookdef)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	rch, err := appCfg.InitilizeRcHooks(ctx)
 	if err != nil {
@@ -92,23 +115,28 @@ func main() {
 	}
 
 	if len(opts.List) > 0 {
+		fmt.Println("LIST")
 		handleResponse(rch.GetSubscriptions(ctx))
 	}
 
 	if len(opts.CreateEnv) > 0 {
+		fmt.Println("CREATE_ENV")
 		handleResponse(rch.CreateSubscription(ctx, req))
 	}
 
 	if len(opts.Create) > 0 {
 		req.DeliveryMode.Address = opts.Create
+		fmt.Println("CREATE")
 		handleResponse(rch.CreateSubscription(ctx, req))
 	}
 
 	if len(opts.Delete) > 0 {
+		fmt.Println("DELETE")
 		handleResponse(rch.DeleteByIdOrUrl(ctx, opts.Delete))
 	}
 
 	if len(opts.Recreate) > 0 {
+		fmt.Println("RECREATE")
 		handleResponse(rch.RecreateSubscriptionIdOrUrl(ctx, opts.Recreate))
 	}
 

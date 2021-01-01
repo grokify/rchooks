@@ -16,6 +16,7 @@ import (
 const (
 	WebhookStatusBlacklisted     = "Blacklisted"
 	RingCentralApiResponseFormat = `RingCentral_API_Status_Code [%v]`
+	ExpiresLong                  = 500000000 // 500M seconds = 15.85 years
 )
 
 func ParseCreateSubscriptionRequest(data []byte) (rc.CreateSubscriptionRequest, error) {
@@ -165,9 +166,23 @@ func NewCreateSubscriptionRequestPermahook(eventFilters []string, hookUrl string
 		DeliveryMode: rc.NotificationDeliveryModeRequest{
 			TransportType: "WebHook",
 			Address:       hookUrl},
-		ExpiresIn: int32(500000000)}
+		ExpiresIn: int32(ExpiresLong)}
 }
 
 func NewCreateSubscriptionRequestPermahookBotSimple(hookUrl string) rc.CreateSubscriptionRequest {
 	return NewCreateSubscriptionRequestPermahook([]string{"/restapi/v1.0/glip/posts"}, hookUrl)
+}
+
+type WebhookDefinitionThin struct {
+	URL          string   `json:"url"`
+	EventFilters []string `json:"eventFilters"`
+}
+
+func (thin *WebhookDefinitionThin) Full() rc.CreateSubscriptionRequest {
+	return rc.CreateSubscriptionRequest{
+		EventFilters: thin.EventFilters,
+		DeliveryMode: rc.NotificationDeliveryModeRequest{
+			TransportType: "WebHook",
+			Address:       thin.URL},
+		ExpiresIn: int32(ExpiresLong)}
 }
