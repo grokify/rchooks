@@ -98,8 +98,8 @@ Set the following enviroment variables:
  [build-status-url]: https://github.com/grokify/ringcentral-webhooks/actions
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/ringcentral-webhooks
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/ringcentral-webhooks
- [docs-godoc-svg]: https://img.shields.io/badge/docs-godoc-blue.svg
- [docs-godoc-url]: https://godoc.org/github.com/grokify/ringcentral-webhooks
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/ringcentral-webhooks
+ [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/ringcentral-webhooks
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
  [license-url]: https://github.com/grokify/ringcentral-webhooks/blob/master/LICENSE.md
  [video-svg]: https://img.shields.io/badge/tutorial-YouTube-blue.svg
