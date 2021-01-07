@@ -1,4 +1,4 @@
-module github.com/grokify/ringcentral-webhooks
+module github.com/grokify/rchooks
 
 go 1.15
 
