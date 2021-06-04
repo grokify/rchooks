@@ -14,7 +14,7 @@ import (
 	"github.com/grokify/simplego/fmt/fmtutil"
 	"github.com/jessevdk/go-flags"
 
-	rchooks "github.com/grokify/ringcentral-webhooks"
+	"github.com/grokify/rchooks"
 )
 
 type Options struct {

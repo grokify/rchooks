@@ -94,13 +94,13 @@ Set the following enviroment variables:
 * `Webhook response exceeds max size. Read bytes count: [1024]`
 * `Webhook responses with code: [404], reason: [Not Found]`
 
- [build-status-svg]: https://github.com/grokify/ringcentral-webhooks/workflows/build/badge.svg
- [build-status-url]: https://github.com/grokify/ringcentral-webhooks/actions
- [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/ringcentral-webhooks
- [goreport-url]: https://goreportcard.com/report/github.com/grokify/ringcentral-webhooks
- [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/ringcentral-webhooks
- [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/ringcentral-webhooks
+ [build-status-svg]: https://github.com/grokify/rchooks/workflows/go%20build/badge.svg
+ [build-status-url]: https://github.com/grokify/rchooks/actions
+ [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/rchooks
+ [goreport-url]: https://goreportcard.com/report/github.com/grokify/rchooks
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/rchooks
+ [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/rchooks
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/grokify/ringcentral-webhooks/blob/master/LICENSE.md
+ [license-url]: https://github.com/grokify/rchooks/blob/master/LICENSE
  [video-svg]: https://img.shields.io/badge/tutorial-YouTube-blue.svg
  [video-url]: https://youtu.be/DYrzzJe8OyI

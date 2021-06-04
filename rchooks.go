@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"strings"
 
-	rc "github.com/grokify/go-ringcentral/office/v1/client"
-	clientutil "github.com/grokify/go-ringcentral/office/v1/util"
+	rc "github.com/grokify/go-ringcentral-client/office/v1/client"
+	clientutil "github.com/grokify/go-ringcentral-client/office/v1/util"
 	hum "github.com/grokify/simplego/net/httputilmore"
 	"github.com/grokify/simplego/type/stringsutil"
 	"github.com/pkg/errors"
@@ -16,7 +16,7 @@ import (
 const (
 	WebhookStatusBlacklisted     = "Blacklisted"
 	RingCentralApiResponseFormat = `RingCentral_API_Status_Code [%v]`
-	ExpiresLong                  = 500000000 // 500M seconds = 15.85 years
+	ExpiresLong                  = 60 * 60 * 24 * 365 * 20 // 20 years
 )
 
 func ParseCreateSubscriptionRequest(data []byte) (rc.CreateSubscriptionRequest, error) {
@@ -34,7 +34,7 @@ func (util *RcHooks) GetSubscriptions(ctx context.Context) (rc.RecordsCollection
 	if err != nil && resp.StatusCode >= 300 {
 		err = errors.Wrap(err, string(clientutil.ApiResponseErrorBody(err)))
 	}
-	return info, hum.ConsolidateErrorRespCodeGte300(resp, err, "ERROR - Get Subscriptions API")
+	return info, hum.CondenseResponseNot2xxToError(resp, err, "ERROR - Get Subscriptions API")
 }
 
 func (util *RcHooks) CreateSubscription(ctx context.Context, req rc.CreateSubscriptionRequest) (rc.SubscriptionInfo, error) {
@@ -44,12 +44,12 @@ func (util *RcHooks) CreateSubscription(ctx context.Context, req rc.CreateSubscr
 		err = errors.Wrap(err, string(clientutil.ApiResponseErrorBody(err)))
 	}
 
-	return info, hum.ConsolidateErrorRespCodeGte300(resp, err, "ERROR - Create Subscription API")
+	return info, hum.CondenseResponseNot2xxToError(resp, err, "ERROR - Create Subscription API")
 }
 
 func (util *RcHooks) DeleteSubscription(ctx context.Context, subscriptionId string) error {
 	resp, err := util.Client.PushNotificationsApi.DeleteSubscription(ctx, subscriptionId)
-	return hum.ConsolidateErrorRespCodeGte300(resp, err,
+	return hum.CondenseResponseNot2xxToError(resp, err,
 		fmt.Sprintf("ERROR - Dete Subscription API id [%v]", subscriptionId))
 }
 
@@ -148,7 +148,7 @@ func (util *RcHooks) DeleteByIdOrUrl(ctx context.Context, idOrUrlToDelete string
 			idOrUrlToDelete == subscription.DeliveryMode.Address {
 			resp, err := util.Client.PushNotificationsApi.DeleteSubscription(
 				ctx, subscription.Id)
-			err = hum.ConsolidateErrorRespCodeGte300(
+			err = hum.CondenseResponseNot2xxToError(
 				resp, err,
 				fmt.Sprintf("ERROR - Delete Subscription API Id [%v]", subscription.Id))
 			if err != nil {
