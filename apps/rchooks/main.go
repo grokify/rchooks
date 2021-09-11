@@ -4,33 +4,47 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"os"
-	"regexp"
 	"strings"
 
 	"github.com/grokify/oauth2more/credentials"
-	"github.com/grokify/simplego/config"
 	"github.com/grokify/simplego/encoding/jsonutil"
 	"github.com/grokify/simplego/fmt/fmtutil"
+	"github.com/grokify/simplego/type/stringsutil"
 	"github.com/jessevdk/go-flags"
+	"github.com/pkg/errors"
 
 	"github.com/grokify/rchooks"
 )
 
-type Options struct {
-	CredsPath string `long:"creds" description:"Credentials filepath"`
-	CredsUser string `long:"user" description:"Credentials user key"`
-	EnvFile   string `short:"e" long:"env" description:"Env filepath"`
-	WhichEnv  []bool `short:"w" long:"which" description:"Which .env path"`
-	NewToken  []bool `short:"n" long:"newToken" description:"Get New Token"`
-	List      []bool `short:"l" long:"list" description:"List subscriptions"`
-	Create    string `short:"c" long:"create" description:"Create subscription"`
-	CreateEnv []bool `long:"createenv" description:"Create subscription from environment"`
-	Delete    string `short:"d" long:"delete" description:"Delete subscription"`
-	Recreate  string `short:"r" long:"recreate" description:"Recreate subscription"`
+type OptionsOAuth struct {
+	CredsPath string `long:"creds" description:"Environment File Path" required:"true"`
+	Account   string `long:"account" description:"Environment Variable Name"`
+	CLI       []bool `long:"cli" description:"CLI"`
 }
 
-func isUrl(s string) bool { return regexp.MustCompile(`^https?://`).MatchString(strings.ToLower(s)) }
+type Options struct {
+	OptionsOAuth
+	//EnvFile   string `short:"e" long:"env" description:"Env filepath"`
+	//WhichEnv  []bool `short:"w" long:"which" description:"Which .env path"`
+	List      []bool   `short:"l" long:"list" description:"List subscriptions"`
+	Create    string   `short:"c" long:"create" description:"Create subscription"`
+	CreateEnv []bool   `long:"createenv" description:"Create subscription from environment var"`
+	Delete    string   `short:"d" long:"delete" description:"Delete subscription"`
+	Recreate  string   `short:"r" long:"recreate" description:"Recreate subscription"`
+	URL       string   `short:"u" long:"url" description:"URL for webhook"`
+	Events    []string `short:"e" long:"events" description:"EventFilters"`
+}
+
+func (opts *Options) CanonicalEvents() ([]string, error) {
+	sep := ","
+	events := stringsutil.SliceCondenseSpace(
+		strings.Split(
+			strings.Join(opts.Events, sep),
+			sep,
+		),
+		true, true)
+	return rchooks.ConvertEvents(events...)
+}
 
 func handleResponse(info interface{}, err error) {
 	if err != nil {
@@ -39,18 +53,19 @@ func handleResponse(info interface{}, err error) {
 	fmtutil.PrintJSON(info)
 }
 
-func GetCredentials(opts Options) (credentials.Credentials, error) {
-	if len(opts.CredsPath) > 0 {
-		credsSet, err := credentials.ReadFileCredentialsSet(opts.CredsPath, true)
-		if err != nil {
-			return credentials.Credentials{}, err
-		}
-		return credsSet.Get(opts.CredsUser)
+func GetCredentials(credspath, account string) (credentials.Credentials, error) {
+	set, err := credentials.ReadFileCredentialsSet(credspath, true)
+	if err != nil {
+		return credentials.Credentials{},
+			errors.Wrap(err, fmt.Sprintf("creds file [%s]", credspath))
 	}
-	return credentials.NewCredentialsJSONs(
-		[]byte(os.Getenv("RC_APP")),
-		[]byte(os.Getenv("RC_USER")),
-		[]byte(os.Getenv("RINGCENTRAL_TOKEN")))
+	creds, err := set.Get(account)
+	if err != nil {
+		accts := strings.Join(set.Accounts(), ",")
+		return credentials.Credentials{},
+			errors.Wrap(err, fmt.Sprintf("use [%s]", accts))
+	}
+	return creds, err
 }
 
 // This code takes a bot token and creates a permanent webhook.
@@ -61,40 +76,22 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if len(opts.CredsPath) == 0 {
-		err = config.LoadEnvPathsPrioritized(opts.EnvFile, os.Getenv("ENV_PATH"))
-		if err != nil {
-			fmt.Printf("E [%v] ENV [%v]\n", opts.EnvFile, os.Getenv("ENV_PATH"))
-			log.Fatal(err)
-		}
-	}
-
-	creds, err := GetCredentials(opts)
+	creds, err := GetCredentials(opts.CredsPath, opts.Account)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if len(opts.NewToken) > 0 {
-		_, err = creds.NewToken()
-		if err != nil {
-			log.Fatal(err)
-		}
+	canEvts, err := opts.CanonicalEvents()
+	if err != nil {
+		log.Fatal(err)
 	}
-
-	hookdef := os.Getenv("RINGCENTRAL_WEBHOOK_DEFINITION_JSON")
-
-	if 1 == 1 {
-		hook := rchooks.WebhookDefinitionThin{
-			URL: "https://320ea976a693.ngrok.io/webhook",
-			EventFilters: []string{
-				"/restapi/v1.0/account/~/a2p-sms/messages?direction=Inbound",
-				"/restapi/v1.0/account/~/a2p-sms/batch",
-				"/restapi/v1.0/account/~/a2p-sms/opt-outs"}}
-		hookdef = string(jsonutil.MustMarshal(hook.Full(), true))
-	}
+	hook := rchooks.WebhookDefinitionThin{
+		URL:          opts.Create,
+		EventFilters: canEvts}
+	hookdef := string(jsonutil.MustMarshal(hook.Full(), true))
 
 	fmtutil.PrintJSON(creds)
-	fmtutil.PrintJSON(hookdef)
+	fmt.Println(hookdef)
 
 	ctx := context.Background()
 
@@ -103,16 +100,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	rch, err := appCfg.InitilizeRcHooks(ctx)
+	rch, err := appCfg.InitializeRcHooks(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	req := appCfg.WebhookDefinition
-
-	if len(opts.WhichEnv) > 0 {
-		fmt.Printf("Using .env file [%v]\n", opts.EnvFile)
-	}
 
 	if len(opts.List) > 0 {
 		fmt.Println("LIST")
