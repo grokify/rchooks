@@ -8,7 +8,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/grokify/oauth2more/ringcentral"
+	"github.com/grokify/oauth2more/credentials"
 	"github.com/grokify/simplego/config"
 	"github.com/grokify/simplego/encoding/jsonutil"
 	"github.com/grokify/simplego/fmt/fmtutil"
@@ -39,15 +39,15 @@ func handleResponse(info interface{}, err error) {
 	fmtutil.PrintJSON(info)
 }
 
-func GetCredentials(opts Options) (ringcentral.Credentials, error) {
+func GetCredentials(opts Options) (credentials.Credentials, error) {
 	if len(opts.CredsPath) > 0 {
-		credsSet, err := ringcentral.ReadFileCredentialsSet(opts.CredsPath)
+		credsSet, err := credentials.ReadFileCredentialsSet(opts.CredsPath, true)
 		if err != nil {
-			return ringcentral.Credentials{}, err
+			return credentials.Credentials{}, err
 		}
 		return credsSet.Get(opts.CredsUser)
 	}
-	return ringcentral.NewCredentialsJSONs(
+	return credentials.NewCredentialsJSONs(
 		[]byte(os.Getenv("RC_APP")),
 		[]byte(os.Getenv("RC_USER")),
 		[]byte(os.Getenv("RINGCENTRAL_TOKEN")))

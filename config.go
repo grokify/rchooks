@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	om "github.com/grokify/oauth2more"
+	"github.com/grokify/oauth2more/credentials"
 	"github.com/grokify/oauth2more/ringcentral"
 	"github.com/pkg/errors"
 
@@ -22,7 +23,7 @@ type RcHooksConfig struct {
 	WebhookDefinition     rc.CreateSubscriptionRequest
 }
 
-func NewRcHooksConfigCreds(creds ringcentral.Credentials, hookDefJson string) (RcHooksConfig, error) {
+func NewRcHooksConfigCreds(creds credentials.Credentials, hookDefJson string) (RcHooksConfig, error) {
 	cfg := RcHooksConfig{
 		ServerUrl:             creds.Application.ServerURL,
 		WebhookDefinitionJson: hookDefJson}
