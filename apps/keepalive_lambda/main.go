@@ -14,8 +14,8 @@ func checkAndFixSubscription() (string, error) {
 		"RINGCENTRAL_TOKEN", "RINGCENTRAL_SERVER_URL", "RINGCENTRAL_WEBHOOK_DEFINITION_JSON")
 
 	ctx := context.Background()
-	if rchooksUtil, err := appCfg.InitilizeRcHooks(ctx); err != nil {
-		return "", errors.Wrap(err, "InitilizeRcHooks")
+	if rchooksUtil, err := appCfg.InitializeRcHooks(ctx); err != nil {
+		return "", errors.Wrap(err, "InitializeRcHooks")
 	} else if _, err := rchooksUtil.CheckAndFixSubscription(ctx, appCfg.WebhookDefinition); err != nil {
 		return "", errors.Wrap(err, "CheckAndFixSubscription")
 	} else {

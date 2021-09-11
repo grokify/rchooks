@@ -75,7 +75,7 @@ func (rchConfig *RcHooksConfig) ClientUtil() (ringcentral.ClientUtil, error) {
 	return cu, err
 }
 
-func (rchConfig *RcHooksConfig) InitilizeRcHooks(ctx context.Context) (RcHooks, error) {
+func (rchConfig *RcHooksConfig) InitializeRcHooks(ctx context.Context) (RcHooks, error) {
 	rchooksUtil := RcHooks{}
 
 	err := rchConfig.Inflate()
