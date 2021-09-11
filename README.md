@@ -21,7 +21,7 @@ YouTube Tutorial Video: https://youtu.be/DYrzzJe8OyI
 #### CLI Installation
 
 ```
-$ go get github.com/grokify/rchooks/apps/rchooks
+$ go get github.com/grokify/rchooks/cmd/rchooks
 $ rchooks --env=/path/to/.env --list
 ```
 
@@ -36,13 +36,12 @@ $ rchooks --recreate=https://example.com/webhook
 $ rchooks --recreate=11112222-3333-4444-5555-66667777888
 $ rchooks --delete=https://example.com/webhook
 $ rchooks --delete=11112222-3333-4444-5555-66667777888
-$ rchooks --env=~/.env --list
 ```
+
+Configure OAuth by setting the `oauth2more/credentials` file via `--creds` and the account via `--account`.
 
 Set the following enviroment variables:
 
-* `RINGCENTRAL_TOKEN` - JSON string or simple access token string
-* `RINGCENTRAL_SERVER_URL`
 * `RINGCENTRAL_WEBHOOK_DEFINITION_JSON` - Create subscription JSON body
 
 ##### Example Webhook Definition
