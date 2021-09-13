@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	om "github.com/grokify/oauth2more"
+	"github.com/grokify/oauth2more"
 	"github.com/grokify/oauth2more/credentials"
 	"github.com/grokify/oauth2more/ringcentral"
 	"github.com/pkg/errors"
@@ -61,7 +61,7 @@ func (rchConfig *RcHooksConfig) Inflate() error {
 }
 
 func (rchConfig *RcHooksConfig) Client() (*http.Client, error) {
-	return om.NewClientBearerTokenSimpleOrJson(context.Background(), []byte(rchConfig.Token))
+	return oauth2more.NewClientBearerTokenSimpleOrJson(context.Background(), []byte(rchConfig.Token))
 }
 
 func (rchConfig *RcHooksConfig) ClientUtil() (ringcentral.ClientUtil, error) {
