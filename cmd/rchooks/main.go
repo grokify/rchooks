@@ -16,14 +16,8 @@ import (
 	"github.com/grokify/rchooks"
 )
 
-type OptionsOAuth struct {
-	CredsPath string `long:"creds" description:"Environment File Path" required:"true"`
-	Account   string `long:"account" description:"Environment Variable Name"`
-	CLI       []bool `long:"cli" description:"CLI"`
-}
-
 type Options struct {
-	OptionsOAuth
+	credentials.Options
 	//EnvFile   string `short:"e" long:"env" description:"Env filepath"`
 	//WhichEnv  []bool `short:"w" long:"which" description:"Which .env path"`
 	List      []bool   `short:"l" long:"list" description:"List subscriptions"`
