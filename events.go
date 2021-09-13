@@ -6,12 +6,14 @@ import (
 )
 
 const (
-	EventFilterMessagePosts  = "/restapi/v1.0/account/~/extension/~/glip/posts"
-	EventFilterMessageGroups = "/restapi/v1.0/account/~/extension/~/glip/groups"
+	EventFilterExtension     = "/restapi/v1.0/account/~/extension/~"
+	EventFilterMessagePosts  = "/restapi/v1.0/glip/posts"
+	EventFilterMessageGroups = "/restapi/v1.0/glip/groups"
 	EventFilterSmsInbound    = "/restapi/v1.0/account/~/a2p-sms/messages?direction=Inbound"
 	EventFilterSmsBatch      = "/restapi/v1.0/account/~/a2p-sms/batch"
 	EventFilterSmsOptOuts    = "/restapi/v1.0/account/~/a2p-sms/opt-outs"
 
+	SlugExtension     = "extension"
 	SlugMessageGroups = "msggroups"
 	SlugMessagePosts  = "msgposts"
 	SlugSmsBatch      = "a2psmsbatch"
