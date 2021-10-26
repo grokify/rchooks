@@ -7,9 +7,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/grokify/oauth2more"
-	"github.com/grokify/oauth2more/credentials"
-	"github.com/grokify/oauth2more/ringcentral"
+	"github.com/grokify/goauth"
+	"github.com/grokify/goauth/credentials"
+	"github.com/grokify/goauth/ringcentral"
 	"github.com/pkg/errors"
 
 	rc "github.com/grokify/go-ringcentral-client/office/v1/client"
@@ -25,7 +25,7 @@ type RcHooksConfig struct {
 
 func NewRcHooksConfigCreds(creds credentials.Credentials, hookDefJson string) (RcHooksConfig, error) {
 	cfg := RcHooksConfig{
-		ServerUrl:             creds.Application.ServerURL,
+		ServerUrl:             creds.OAuth2.ServerURL,
 		WebhookDefinitionJson: hookDefJson}
 	if creds.Token == nil {
 		tok, err := creds.NewToken()
@@ -61,7 +61,7 @@ func (rchConfig *RcHooksConfig) Inflate() error {
 }
 
 func (rchConfig *RcHooksConfig) Client() (*http.Client, error) {
-	return oauth2more.NewClientBearerTokenSimpleOrJson(context.Background(), []byte(rchConfig.Token))
+	return goauth.NewClientBearerTokenSimpleOrJson(context.Background(), []byte(rchConfig.Token))
 }
 
 func (rchConfig *RcHooksConfig) ClientUtil() (ringcentral.ClientUtil, error) {

@@ -6,7 +6,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/grokify/oauth2more/credentials"
+	"github.com/grokify/goauth/credentials"
 	"github.com/grokify/simplego/encoding/jsonutil"
 	"github.com/grokify/simplego/fmt/fmtutil"
 	"github.com/grokify/simplego/type/stringsutil"
@@ -83,9 +83,6 @@ func main() {
 		URL:          opts.Create,
 		EventFilters: canEvts}
 	hookdef := string(jsonutil.MustMarshal(hook.Full(), true))
-
-	fmtutil.PrintJSON(creds)
-	fmt.Println(hookdef)
 
 	ctx := context.Background()
 
