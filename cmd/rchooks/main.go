@@ -7,9 +7,9 @@ import (
 	"strings"
 
 	"github.com/grokify/goauth/credentials"
-	"github.com/grokify/simplego/encoding/jsonutil"
-	"github.com/grokify/simplego/fmt/fmtutil"
-	"github.com/grokify/simplego/type/stringsutil"
+	"github.com/grokify/mogo/encoding/jsonutil"
+	"github.com/grokify/mogo/fmt/fmtutil"
+	"github.com/grokify/mogo/type/stringsutil"
 	"github.com/jessevdk/go-flags"
 	"github.com/pkg/errors"
 

@@ -8,8 +8,8 @@ import (
 
 	rc "github.com/grokify/go-ringcentral-client/office/v1/client"
 	clientutil "github.com/grokify/go-ringcentral-client/office/v1/util"
-	"github.com/grokify/simplego/net/httputilmore"
-	"github.com/grokify/simplego/type/stringsutil"
+	"github.com/grokify/mogo/net/httputilmore"
+	"github.com/grokify/mogo/type/stringsutil"
 	"github.com/pkg/errors"
 )
 
