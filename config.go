@@ -10,7 +10,7 @@ import (
 	"github.com/grokify/goauth"
 	"github.com/grokify/goauth/credentials"
 	"github.com/grokify/goauth/ringcentral"
-	"github.com/pkg/errors"
+	"github.com/grokify/mogo/errors/errorsutil"
 
 	rc "github.com/grokify/go-ringcentral-client/office/v1/client"
 	ru "github.com/grokify/go-ringcentral-client/office/v1/util"
@@ -54,7 +54,7 @@ func (rchConfig *RcHooksConfig) Inflate() error {
 	}
 	req, err := ParseCreateSubscriptionRequest([]byte(rchConfig.WebhookDefinitionJson))
 	if err != nil {
-		return errors.Wrap(err, "Parse subscription definition")
+		return errorsutil.Wrap(err, "Parse subscription definition")
 	}
 	rchConfig.WebhookDefinition = req
 	return nil
@@ -85,7 +85,7 @@ func (rchConfig *RcHooksConfig) InitializeRcHooks(ctx context.Context) (RcHooks,
 
 	httpClient, err := rchConfig.Client()
 	if err != nil {
-		return rchooksUtil, errors.Wrap(err, "New client token")
+		return rchooksUtil, errorsutil.Wrap(err, "New client token")
 	}
 
 	apiClient, err := ru.NewApiClientHttpClientBaseURL(

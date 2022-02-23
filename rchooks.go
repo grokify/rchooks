@@ -8,9 +8,9 @@ import (
 
 	rc "github.com/grokify/go-ringcentral-client/office/v1/client"
 	clientutil "github.com/grokify/go-ringcentral-client/office/v1/util"
+	"github.com/grokify/mogo/errors/errorsutil"
 	"github.com/grokify/mogo/net/httputilmore"
 	"github.com/grokify/mogo/type/stringsutil"
-	"github.com/pkg/errors"
 )
 
 const (
@@ -32,7 +32,7 @@ type RcHooks struct {
 func (util *RcHooks) GetSubscriptions(ctx context.Context) (rc.RecordsCollectionResourceSubscriptionResponse, error) {
 	info, resp, err := util.Client.PushNotificationsApi.GetSubscriptions(ctx)
 	if err != nil && resp.StatusCode >= 300 {
-		err = errors.Wrap(err, string(clientutil.ApiResponseErrorBody(err)))
+		err = errorsutil.Wrap(err, string(clientutil.ApiResponseErrorBody(err)))
 	}
 	return info, httputilmore.CondenseResponseNot2xxToError(resp, err, "ERROR - Get Subscriptions API")
 }
@@ -41,7 +41,7 @@ func (util *RcHooks) CreateSubscription(ctx context.Context, req rc.CreateSubscr
 	info, resp, err := util.Client.PushNotificationsApi.CreateSubscription(ctx, req)
 
 	if err != nil && resp.StatusCode >= 300 {
-		err = errors.Wrap(err, string(clientutil.ApiResponseErrorBody(err)))
+		err = errorsutil.Wrap(err, string(clientutil.ApiResponseErrorBody(err)))
 	}
 
 	return info, httputilmore.CondenseResponseNot2xxToError(resp, err, "ERROR - Create Subscription API")

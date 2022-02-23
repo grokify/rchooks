@@ -8,10 +8,10 @@ import (
 
 	"github.com/grokify/goauth/credentials"
 	"github.com/grokify/mogo/encoding/jsonutil"
+	"github.com/grokify/mogo/errors/errorsutil"
 	"github.com/grokify/mogo/fmt/fmtutil"
 	"github.com/grokify/mogo/type/stringsutil"
 	"github.com/jessevdk/go-flags"
-	"github.com/pkg/errors"
 
 	"github.com/grokify/rchooks"
 )
@@ -51,13 +51,13 @@ func GetCredentials(credspath, account string) (credentials.Credentials, error) 
 	set, err := credentials.ReadFileCredentialsSet(credspath, true)
 	if err != nil {
 		return credentials.Credentials{},
-			errors.Wrap(err, fmt.Sprintf("creds file [%s]", credspath))
+			errorsutil.Wrap(err, fmt.Sprintf("creds file [%s]", credspath))
 	}
 	creds, err := set.Get(account)
 	if err != nil {
 		accts := strings.Join(set.Accounts(), ",")
 		return credentials.Credentials{},
-			errors.Wrap(err, fmt.Sprintf("use [%s]", accts))
+			errorsutil.Wrap(err, fmt.Sprintf("use [%s]", accts))
 	}
 	return creds, err
 }

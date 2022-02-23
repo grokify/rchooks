@@ -5,8 +5,8 @@ import (
 	"context"
 
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/grokify/mogo/errors/errorsutil"
 	"github.com/grokify/rchooks"
-	"github.com/pkg/errors"
 )
 
 func checkAndFixSubscription() (string, error) {
@@ -15,9 +15,9 @@ func checkAndFixSubscription() (string, error) {
 
 	ctx := context.Background()
 	if rchooksUtil, err := appCfg.InitializeRcHooks(ctx); err != nil {
-		return "", errors.Wrap(err, "InitializeRcHooks")
+		return "", errorsutil.Wrap(err, "InitializeRcHooks")
 	} else if _, err := rchooksUtil.CheckAndFixSubscription(ctx, appCfg.WebhookDefinition); err != nil {
-		return "", errors.Wrap(err, "CheckAndFixSubscription")
+		return "", errorsutil.Wrap(err, "CheckAndFixSubscription")
 	} else {
 		return "", nil
 	}
