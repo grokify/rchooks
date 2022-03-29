@@ -61,7 +61,7 @@ func (rchConfig *RcHooksConfig) Inflate() error {
 }
 
 func (rchConfig *RcHooksConfig) Client() (*http.Client, error) {
-	return goauth.NewClientBearerTokenSimpleOrJson(context.Background(), []byte(rchConfig.Token))
+	return goauth.NewClientBearerTokenSimpleOrJSON(context.Background(), []byte(rchConfig.Token))
 }
 
 func (rchConfig *RcHooksConfig) ClientUtil() (ringcentral.ClientUtil, error) {
