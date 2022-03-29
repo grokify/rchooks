@@ -15,7 +15,7 @@ import (
 
 const (
 	WebhookStatusBlacklisted     = "Blacklisted"
-	RingCentralApiResponseFormat = `RingCentral_API_Status_Code [%v]`
+	RingCentralAPIResponseFormat = `RingCentral_API_Status_Code [%v]`
 	ExpiresMax                   = 499999999 // 15 years
 )
 
@@ -47,10 +47,10 @@ func (util *RcHooks) CreateSubscription(ctx context.Context, req rc.CreateSubscr
 	return info, httputilmore.CondenseResponseNot2xxToError(resp, err, "ERROR - Create Subscription API")
 }
 
-func (util *RcHooks) DeleteSubscription(ctx context.Context, subscriptionId string) error {
-	resp, err := util.Client.PushNotificationsApi.DeleteSubscription(ctx, subscriptionId)
+func (util *RcHooks) DeleteSubscription(ctx context.Context, subscriptionID string) error {
+	resp, err := util.Client.PushNotificationsApi.DeleteSubscription(ctx, subscriptionID)
 	return httputilmore.CondenseResponseNot2xxToError(resp, err,
-		fmt.Sprintf("ERROR - Dete Subscription API id [%v]", subscriptionId))
+		fmt.Sprintf("ERROR - Dete Subscription API id [%v]", subscriptionID))
 }
 
 func (util *RcHooks) DeleteBlacklisted(ctx context.Context, matches []rc.SubscriptionResponse) ([]rc.SubscriptionResponse, error) {
@@ -71,13 +71,13 @@ func (util *RcHooks) DeleteBlacklisted(ctx context.Context, matches []rc.Subscri
 
 func FilterSubscriptionsForRequest(ress []rc.SubscriptionResponse, req rc.CreateSubscriptionRequest) []rc.SubscriptionResponse {
 	reqFiltersStringSorted := stringsutil.JoinStringsTrimSpaceToLowerSort(req.EventFilters, ",")
-	reqWebhookUrl := strings.TrimSpace(req.DeliveryMode.Address)
+	reqWebhookURL := strings.TrimSpace(req.DeliveryMode.Address)
 
 	matches := []rc.SubscriptionResponse{}
 	for _, res := range ress {
 		resFiltersStringSorted := stringsutil.JoinStringsTrimSpaceToLowerSort(res.EventFilters, ",")
-		resWebhookUrl := strings.TrimSpace(res.DeliveryMode.Address)
-		if reqWebhookUrl == resWebhookUrl &&
+		resWebhookURL := strings.TrimSpace(res.DeliveryMode.Address)
+		if reqWebhookURL == resWebhookURL &&
 			reqFiltersStringSorted == resFiltersStringSorted {
 			matches = append(matches, res)
 		}
@@ -85,7 +85,7 @@ func FilterSubscriptionsForRequest(ress []rc.SubscriptionResponse, req rc.Create
 	return matches
 }
 
-func (util *RcHooks) RecreateSubscriptionIdOrUrl(ctx context.Context, subIdOrUrl string) ([]rc.SubscriptionInfo, error) {
+func (util *RcHooks) RecreateSubscriptionIDOrURL(ctx context.Context, subIDOrURL string) ([]rc.SubscriptionInfo, error) {
 	recreated := []rc.SubscriptionInfo{}
 
 	subs, err := util.GetSubscriptions(ctx)
@@ -95,12 +95,12 @@ func (util *RcHooks) RecreateSubscriptionIdOrUrl(ctx context.Context, subIdOrUrl
 
 	matches := []rc.SubscriptionResponse{}
 	for _, sub := range subs.Records {
-		if subIdOrUrl == sub.Id || subIdOrUrl == sub.DeliveryMode.Address {
+		if subIDOrURL == sub.Id || subIDOrURL == sub.DeliveryMode.Address {
 			matches = append(matches, sub)
 		}
 	}
 	if len(matches) == 0 {
-		return recreated, fmt.Errorf("No matches found for [%v]", subIdOrUrl)
+		return recreated, fmt.Errorf("No matches found for [%v]", subIDOrURL)
 	}
 
 	for _, sub := range matches {
@@ -136,7 +136,7 @@ func (util *RcHooks) CheckAndFixSubscription(ctx context.Context, req rc.CreateS
 	return recreated, nil
 }
 
-func (util *RcHooks) DeleteByIdOrUrl(ctx context.Context, idOrUrlToDelete string) ([]rc.SubscriptionResponse, error) {
+func (util *RcHooks) DeleteByIDOrURL(ctx context.Context, idOrURLToDelete string) ([]rc.SubscriptionResponse, error) {
 	deleted := []rc.SubscriptionResponse{}
 	info, err := util.GetSubscriptions(ctx)
 	if err != nil {
@@ -144,8 +144,8 @@ func (util *RcHooks) DeleteByIdOrUrl(ctx context.Context, idOrUrlToDelete string
 	}
 
 	for _, subscription := range info.Records {
-		if idOrUrlToDelete == subscription.Id ||
-			idOrUrlToDelete == subscription.DeliveryMode.Address {
+		if idOrURLToDelete == subscription.Id ||
+			idOrURLToDelete == subscription.DeliveryMode.Address {
 			resp, err := util.Client.PushNotificationsApi.DeleteSubscription(
 				ctx, subscription.Id)
 			err = httputilmore.CondenseResponseNot2xxToError(
@@ -160,12 +160,12 @@ func (util *RcHooks) DeleteByIdOrUrl(ctx context.Context, idOrUrlToDelete string
 	return deleted, nil
 }
 
-func NewCreateSubscriptionRequestPermahook(eventFilters []string, hookUrl string) rc.CreateSubscriptionRequest {
+func NewCreateSubscriptionRequestPermahook(eventFilters []string, hookURL string) rc.CreateSubscriptionRequest {
 	return rc.CreateSubscriptionRequest{
 		EventFilters: eventFilters,
 		DeliveryMode: rc.NotificationDeliveryModeRequest{
 			TransportType: "WebHook",
-			Address:       hookUrl},
+			Address:       hookURL},
 		ExpiresIn: int32(ExpiresMax)}
 }
 

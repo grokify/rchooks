@@ -44,7 +44,7 @@ func handleResponse(info interface{}, err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmtutil.PrintJSON(info)
+	fmtutil.MustPrintJSON(info)
 }
 
 func GetCredentials(credspath, account string) (credentials.Credentials, error) {
@@ -116,12 +116,12 @@ func main() {
 
 	if len(opts.Delete) > 0 {
 		fmt.Println("DELETE")
-		handleResponse(rch.DeleteByIdOrUrl(ctx, opts.Delete))
+		handleResponse(rch.DeleteByIDOrURL(ctx, opts.Delete))
 	}
 
 	if len(opts.Recreate) > 0 {
 		fmt.Println("RECREATE")
-		handleResponse(rch.RecreateSubscriptionIdOrUrl(ctx, opts.Recreate))
+		handleResponse(rch.RecreateSubscriptionIDOrURL(ctx, opts.Recreate))
 	}
 
 	fmt.Println("DONE")
