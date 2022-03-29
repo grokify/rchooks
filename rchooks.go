@@ -100,7 +100,7 @@ func (util *RcHooks) RecreateSubscriptionIDOrURL(ctx context.Context, subIDOrURL
 		}
 	}
 	if len(matches) == 0 {
-		return recreated, fmt.Errorf("No matches found for [%v]", subIDOrURL)
+		return recreated, fmt.Errorf("no matches found for [%v]", subIDOrURL)
 	}
 
 	for _, sub := range matches {
@@ -169,8 +169,8 @@ func NewCreateSubscriptionRequestPermahook(eventFilters []string, hookURL string
 		ExpiresIn: int32(ExpiresMax)}
 }
 
-func NewCreateSubscriptionRequestPermahookBotSimple(hookUrl string) rc.CreateSubscriptionRequest {
-	return NewCreateSubscriptionRequestPermahook([]string{"/restapi/v1.0/glip/posts"}, hookUrl)
+func NewCreateSubscriptionRequestPermahookBotSimple(hookURL string) rc.CreateSubscriptionRequest {
+	return NewCreateSubscriptionRequestPermahook([]string{"/restapi/v1.0/glip/posts"}, hookURL)
 }
 
 type WebhookDefinitionThin struct {
