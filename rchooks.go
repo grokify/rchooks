@@ -170,7 +170,7 @@ func NewCreateSubscriptionRequestPermahook(eventFilters []string, hookURL string
 }
 
 func NewCreateSubscriptionRequestPermahookBotSimple(hookURL string) rc.CreateSubscriptionRequest {
-	return NewCreateSubscriptionRequestPermahook([]string{"/restapi/v1.0/glip/posts"}, hookURL)
+	return NewCreateSubscriptionRequestPermahook([]string{EventFilterMessagePosts}, hookURL)
 }
 
 type WebhookDefinitionThin struct {
