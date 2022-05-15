@@ -21,6 +21,13 @@ YouTube Tutorial Video: https://youtu.be/DYrzzJe8OyI
 #### CLI Installation
 
 ```
+$ go install github.com/grokify/rchooks/cmd/rchooks
+$ rchooks --env=/path/to/.env --list
+```
+
+Prior to Go 1.18, use `go get`:
+
+```
 $ go get github.com/grokify/rchooks/cmd/rchooks
 $ rchooks --env=/path/to/.env --list
 ```
