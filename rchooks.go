@@ -17,6 +17,7 @@ const (
 	WebhookStatusBlacklisted     = "Blacklisted"
 	RingCentralAPIResponseFormat = `RingCentral_API_Status_Code [%v]`
 	ExpiresMax                   = 499999999 // 15 years
+	HeaderValidationToken        = "Validation-Token"
 	TransportTypePubNub          = "PubNub"
 	TransportTypeWebHook         = "WebHook"
 )

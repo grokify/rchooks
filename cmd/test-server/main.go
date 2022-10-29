@@ -2,19 +2,20 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
+
+	"github.com/grokify/rchooks"
 )
 
 func webhookHandler(w http.ResponseWriter, r *http.Request) {
-	validationToken := "Validation-Token"
-	if len(r.Header.Get(validationToken)) > 0 {
-		w.Header().Set(validationToken, r.Header.Get(validationToken))
-		log.Printf("INCOMING_WEBHOOK_VALIDATION_TOKEN [%v]", r.Header.Get(validationToken))
+	if len(r.Header.Get(rchooks.HeaderValidationToken)) > 0 {
+		w.Header().Set(rchooks.HeaderValidationToken, r.Header.Get(rchooks.HeaderValidationToken))
+		log.Printf("INCOMING_WEBHOOK_VALIDATION_TOKEN [%v]", r.Header.Get(rchooks.HeaderValidationToken))
 		return
 	}
-	body, err := ioutil.ReadAll(r.Body)
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		log.Printf("E_CANNOT_READ_WEBHOOK_BODY [%v]", err.Error())
 	} else {
