@@ -34,8 +34,8 @@ github.com/grokify/go-ringcentral-client v0.3.8 h1:6zUKa8HbD+M8xZeylHTxz2tRkiyN1
 github.com/grokify/go-ringcentral-client v0.3.8/go.mod h1:k687LbVQb1lJi92MNvqgM0q9fm5nfBO7Rjrg0v2s4yo=
 github.com/grokify/go-scim-client v0.1.8 h1:wojSwP7mpe5BQh6D8KpgiFhs55eiCfAyeVeARQu6cVU=
 github.com/grokify/go-scim-client v0.1.8/go.mod h1:/bynQPh0d19K973IkGTKz0XUcbdDcNKK3XH8zv5hLjU=
-github.com/grokify/goauth v0.16.3 h1:CQ9XezWjaT6KtR67C7+dztAEn0AgyxvGVzhgbVCHz8I=
-github.com/grokify/goauth v0.16.3/go.mod h1:HvFVD5VjZUw+fUxzt4OMCp+Wfh5ydqDA5a7bhRkeCvM=
+github.com/grokify/goauth v0.16.4 h1:5uh52WUA3GbtTwJHXmgcz4kkRLEtgkxJEkTJsioIlg8=
+github.com/grokify/goauth v0.16.4/go.mod h1:DsK0cseBllYrjN7xqETTCNRh2BSRChMMH4wrN/EMCH4=
 github.com/grokify/gohttp v0.2.2 h1:bb+LOffbJdwzazuuwMnS320cId02iFFicLwWIGeMD3o=
 github.com/grokify/gohttp v0.2.2/go.mod h1:665NrVNsW1YlgiFbl8Iyl62gEcGZ6CgE2nCsQO6OLYg=
 github.com/grokify/mogo v0.40.13 h1:3ygVsUrnA3PfuwwEWUwW2Iq00OypTjkwDOfil7RKzjg=
@@ -88,8 +88,8 @@ golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2/go.mod h1:9nx3DQGgdP8bBQD5qx
 golang.org/x/net v0.0.0-20220225172249-27dd8689420f/go.mod h1:CfG3xpIq0wQ8r1q4Su4UZFWDARRcnwPjda9FqA0JpMk=
 golang.org/x/net v0.1.0 h1:hZ/3BUoy5aId7sCpA/Tc5lt8DkFgdVS2onTpJsZ/fl0=
 golang.org/x/net v0.1.0/go.mod h1:Cx3nUiGt4eDBEyega/BKRp+/AlGL8hYe7U9odMt2Cco=
-golang.org/x/oauth2 v0.0.0-20221014153046-6fdb5e3db783 h1:nt+Q6cXKz4MosCSpnbMtqiQ8Oz0pxTef2B4Vca2lvfk=
-golang.org/x/oauth2 v0.0.0-20221014153046-6fdb5e3db783/go.mod h1:h4gKUeWbJ4rQPri7E0u6Gs4e9Ri2zaLxzw5DI5XGrYg=
+golang.org/x/oauth2 v0.1.0 h1:isLCZuhj4v+tYv7eskaN4v/TM+A1begWWgyVJDdl1+Y=
+golang.org/x/oauth2 v0.1.0/go.mod h1:G9FE4dLTsbXUu90h/Pf85g4w1D+SSAgR+q46nJZ8M4A=
 golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20201119102817-f84b799fce68/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20210320140829-1e4c9ba3b0c4/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
