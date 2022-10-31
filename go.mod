@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/aws/aws-lambda-go v1.34.1
 	github.com/grokify/go-ringcentral-client v0.3.8
-	github.com/grokify/goauth v0.16.3
+	github.com/grokify/goauth v0.16.4
 	github.com/grokify/mogo v0.40.13
 	github.com/jessevdk/go-flags v1.5.0
 )
@@ -35,7 +35,7 @@ require (
 	github.com/valyala/fastjson v1.6.3 // indirect
 	golang.org/x/crypto v0.1.0 // indirect
 	golang.org/x/net v0.1.0 // indirect
-	golang.org/x/oauth2 v0.0.0-20221014153046-6fdb5e3db783 // indirect
+	golang.org/x/oauth2 v0.1.0 // indirect
 	golang.org/x/sys v0.1.0 // indirect
 	golang.org/x/text v0.4.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
