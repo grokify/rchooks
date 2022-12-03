@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/aws/aws-lambda-go v1.35.0
 	github.com/grokify/go-ringcentral-client v0.3.9
-	github.com/grokify/goauth v0.16.5
+	github.com/grokify/goauth v0.16.6
 	github.com/grokify/mogo v0.41.6
 	github.com/jessevdk/go-flags v1.5.0
 )
