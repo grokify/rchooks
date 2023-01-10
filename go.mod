@@ -3,7 +3,7 @@ module github.com/grokify/rchooks
 go 1.18
 
 require (
-	github.com/aws/aws-lambda-go v1.36.1
+	github.com/aws/aws-lambda-go v1.37.0
 	github.com/grokify/go-ringcentral-client v0.3.10
 	github.com/grokify/goauth v0.17.2
 	github.com/grokify/mogo v0.44.0
