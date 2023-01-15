@@ -9,7 +9,7 @@ import (
 	rc "github.com/grokify/go-ringcentral-client/office/v1/client"
 	clientutil "github.com/grokify/go-ringcentral-client/office/v1/util"
 	"github.com/grokify/mogo/errors/errorsutil"
-	"github.com/grokify/mogo/net/httputilmore"
+	"github.com/grokify/mogo/net/http/httputilmore"
 	"github.com/grokify/mogo/type/stringsutil"
 )
 
