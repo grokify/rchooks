@@ -70,7 +70,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	creds, err := GetCredentials(opts.Options.CredsPath, opts.Account)
+	creds, err := GetCredentials(opts.Options.CredsPath, opts.Options.Account)
 	if err != nil {
 		log.Fatal(err)
 	}
