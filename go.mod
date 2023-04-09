@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/aws/aws-lambda-go v1.39.1
-	github.com/grokify/go-ringcentral-client v0.3.12
+	github.com/grokify/go-ringcentral-client v0.3.14
 	github.com/grokify/goauth v0.17.7
 	github.com/grokify/mogo v0.49.1
 	github.com/jessevdk/go-flags v1.5.0
@@ -16,7 +16,7 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
-	github.com/grokify/go-scim-client v0.1.13 // indirect
+	github.com/grokify/go-scim-client v0.1.15 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
