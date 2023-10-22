@@ -100,7 +100,7 @@ Set the following enviroment variables:
 * `Webhook response exceeds max size. Read bytes count: [1024]`
 * `Webhook responses with code: [404], reason: [Not Found]`
 
- [build-status-svg]: https://github.com/grokify/rchooks/workflows/go%20build/badge.svg
+ [build-status-svg]: https://github.com/grokify/rchooks/workflows/test/badge.svg
  [build-status-url]: https://github.com/grokify/rchooks/actions
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/rchooks
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/rchooks
