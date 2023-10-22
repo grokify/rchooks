@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/grokify/rchooks"
 )
@@ -28,5 +29,15 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/webhook", webhookHandler)
 	fmt.Println("Starting server on :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+
+	server := &http.Server{
+		Addr:              ":8080",
+		ReadHeaderTimeout: 3 * time.Second,
+	}
+
+	err := server.ListenAndServe()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }
