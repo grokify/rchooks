@@ -6,7 +6,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/grokify/goauth/credentials"
+	"github.com/grokify/goauth"
 	"github.com/grokify/mogo/encoding/jsonutil"
 	"github.com/grokify/mogo/errors/errorsutil"
 	"github.com/grokify/mogo/fmt/fmtutil"
@@ -17,7 +17,7 @@ import (
 )
 
 type Options struct {
-	credentials.Options
+	goauth.Options
 	//EnvFile   string `short:"e" long:"env" description:"Env filepath"`
 	//WhichEnv  []bool `short:"w" long:"which" description:"Which .env path"`
 	List      []bool   `short:"l" long:"list" description:"List subscriptions"`
@@ -47,16 +47,16 @@ func handleResponse(info interface{}, err error) {
 	fmtutil.MustPrintJSON(info)
 }
 
-func GetCredentials(credspath, account string) (credentials.Credentials, error) {
-	set, err := credentials.ReadFileCredentialsSet(credspath, true)
+func GetCredentials(credspath, account string) (goauth.Credentials, error) {
+	set, err := goauth.ReadFileCredentialsSet(credspath, true)
 	if err != nil {
-		return credentials.Credentials{},
+		return goauth.Credentials{},
 			errorsutil.Wrap(err, fmt.Sprintf("creds file [%s]", credspath))
 	}
 	creds, err := set.Get(account)
 	if err != nil {
 		accts := strings.Join(set.Accounts(), ",")
-		return credentials.Credentials{},
+		return goauth.Credentials{},
 			errorsutil.Wrap(err, fmt.Sprintf("use [%s]", accts))
 	}
 	return creds, err

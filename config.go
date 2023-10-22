@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/grokify/goauth"
-	"github.com/grokify/goauth/credentials"
+	"github.com/grokify/goauth/authutil"
 	"github.com/grokify/goauth/ringcentral"
 	"github.com/grokify/mogo/errors/errorsutil"
 
@@ -23,7 +23,7 @@ type RcHooksConfig struct {
 	WebhookDefinition     rc.CreateSubscriptionRequest
 }
 
-func NewRcHooksConfigCreds(creds credentials.Credentials, hookDefJSON string) (RcHooksConfig, error) {
+func NewRcHooksConfigCreds(creds goauth.Credentials, hookDefJSON string) (RcHooksConfig, error) {
 	cfg := RcHooksConfig{
 		ServerURL:             creds.OAuth2.ServerURL,
 		WebhookDefinitionJSON: hookDefJSON}
@@ -61,7 +61,7 @@ func (rchConfig *RcHooksConfig) Inflate() error {
 }
 
 func (rchConfig *RcHooksConfig) Client() (*http.Client, error) {
-	return goauth.NewClientBearerTokenSimpleOrJSON(context.Background(), []byte(rchConfig.Token))
+	return authutil.NewClientBearerTokenSimpleOrJSON(context.Background(), []byte(rchConfig.Token))
 }
 
 func (rchConfig *RcHooksConfig) ClientUtil() (ringcentral.ClientUtil, error) {
