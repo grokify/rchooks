@@ -2,7 +2,7 @@ module github.com/grokify/rchooks
 
 go 1.21
 
-toolchain go1.21.1
+// toolchain go1.21.1
 
 require (
 	github.com/aws/aws-lambda-go v1.41.0
