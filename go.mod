@@ -5,7 +5,7 @@ go 1.21
 // toolchain go1.21.1
 
 require (
-	github.com/aws/aws-lambda-go v1.43.0
+	github.com/aws/aws-lambda-go v1.45.0
 	github.com/grokify/go-ringcentral-client v0.3.18
 	github.com/grokify/goauth v0.20.9
 	github.com/grokify/mogo v0.62.7
