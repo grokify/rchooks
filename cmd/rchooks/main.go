@@ -86,7 +86,7 @@ func main() {
 
 	ctx := context.Background()
 
-	appCfg, err := rchooks.NewRcHooksConfigCreds(creds, hookdef)
+	appCfg, err := rchooks.NewRcHooksConfigCreds(context.Background(), creds, hookdef)
 	if err != nil {
 		log.Fatal(err)
 	}

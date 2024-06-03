@@ -23,12 +23,12 @@ type RcHooksConfig struct {
 	WebhookDefinition     rc.CreateSubscriptionRequest
 }
 
-func NewRcHooksConfigCreds(creds goauth.Credentials, hookDefJSON string) (RcHooksConfig, error) {
+func NewRcHooksConfigCreds(ctx context.Context, creds goauth.Credentials, hookDefJSON string) (RcHooksConfig, error) {
 	cfg := RcHooksConfig{
 		ServerURL:             creds.OAuth2.ServerURL,
 		WebhookDefinitionJSON: hookDefJSON}
 	if creds.Token == nil {
-		tok, err := creds.NewToken()
+		tok, err := creds.NewToken(ctx)
 		if err != nil {
 			return cfg, err
 		}
