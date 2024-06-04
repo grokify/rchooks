@@ -8,7 +8,7 @@ require (
 	github.com/aws/aws-lambda-go v1.47.0
 	github.com/grokify/go-ringcentral-client v0.3.22
 	github.com/grokify/goauth v0.21.2
-	github.com/grokify/mogo v0.64.2
+	github.com/grokify/mogo v0.64.3
 	github.com/jessevdk/go-flags v1.5.0
 )
 
