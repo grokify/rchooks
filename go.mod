@@ -5,8 +5,8 @@ go 1.22.7
 require (
 	github.com/aws/aws-lambda-go v1.47.0
 	github.com/grokify/go-ringcentral-client v0.3.24
-	github.com/grokify/goauth v0.22.4
-	github.com/grokify/mogo v0.65.6
+	github.com/grokify/goauth v0.22.5
+	github.com/grokify/mogo v0.66.0
 	github.com/jessevdk/go-flags v1.6.1
 )
 
@@ -19,7 +19,7 @@ require (
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/golang-jwt/jwt/v5 v5.2.1 // indirect
-	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
+	github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8 // indirect
 	github.com/google/s2a-go v0.1.8 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
