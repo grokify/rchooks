@@ -8,6 +8,7 @@ import (
 
 	rc "github.com/grokify/go-ringcentral-client/office/v1/client"
 	clientutil "github.com/grokify/go-ringcentral-client/office/v1/util"
+	"github.com/grokify/mogo/encoding/jsonutil"
 	"github.com/grokify/mogo/errors/errorsutil"
 	"github.com/grokify/mogo/net/http/httputilmore"
 	"github.com/grokify/mogo/type/stringsutil"
@@ -35,7 +36,10 @@ type RcHooks struct {
 func (util *RcHooks) GetSubscriptions(ctx context.Context) (rc.RecordsCollectionResourceSubscriptionResponse, error) {
 	info, resp, err := util.Client.PushNotificationsApi.GetSubscriptions(ctx)
 	if err != nil && resp.StatusCode >= 300 {
-		err = errorsutil.Wrap(err, string(clientutil.ApiResponseErrorBody(err)))
+		err = errorsutil.Wrapf(err, "rcAPIGetSubscriptionsError (resStatusCode: %d) %s", resp.StatusCode, string(jsonutil.MustMarshal(map[string]any{
+			"httpResStatusCode": resp.StatusCode,
+			"httpResBody":       string(clientutil.ApiResponseErrorBody(err)),
+		}, false)))
 	}
 	return info, httputilmore.CondenseResponseNot2xxToError(resp, err, "ERROR - Get Subscriptions API")
 }

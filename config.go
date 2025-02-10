@@ -30,7 +30,7 @@ func NewRcHooksConfigCreds(ctx context.Context, creds goauth.Credentials, hookDe
 	if creds.Token == nil {
 		tok, err := creds.NewToken(ctx)
 		if err != nil {
-			return cfg, err
+			return cfg, errorsutil.NewErrorWithLocation(err.Error())
 		}
 		creds.Token = tok
 	}
