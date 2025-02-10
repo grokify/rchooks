@@ -1,6 +1,7 @@
 # RCHooks - RingCentral Webhook Tools
 
 [![Build Status][build-status-svg]][build-status-url]
+[![Lint Status][lint-status-svg]][lint-status-url]
 [![Go Report Card][goreport-svg]][goreport-url]
 [![Docs][docs-godoc-svg]][docs-godoc-url]
 [![License][license-svg]][license-url]
@@ -101,7 +102,9 @@ Set the following enviroment variables:
 * `Webhook responses with code: [404], reason: [Not Found]`
 
  [build-status-svg]: https://github.com/grokify/rchooks/workflows/test/badge.svg
- [build-status-url]: https://github.com/grokify/rchooks/actions
+ [build-status-url]: https://github.com/grokify/rchooks/actions/workflows/test.yaml
+ [lint-status-svg]: https://github.com/grokify/rchooks/workflows/lint/badge.svg
+ [lint-status-url]: https://github.com/grokify/rchooks/actions/workflows/lint.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/rchooks
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/rchooks
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/rchooks
