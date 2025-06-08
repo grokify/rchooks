@@ -101,9 +101,9 @@ Set the following enviroment variables:
 * `Webhook response exceeds max size. Read bytes count: [1024]`
 * `Webhook responses with code: [404], reason: [Not Found]`
 
- [build-status-svg]: https://github.com/grokify/rchooks/workflows/test/badge.svg
- [build-status-url]: https://github.com/grokify/rchooks/actions/workflows/test.yaml
- [lint-status-svg]: https://github.com/grokify/rchooks/workflows/lint/badge.svg
+ [build-status-svg]: https://github.com/grokify/rchooks/actions/workflows/ci.yaml/badge.svg?branch=master
+ [build-status-url]: https://github.com/grokify/rchooks/actions/workflows/ci.yaml
+ [lint-status-svg]: https://github.com/grokify/rchooks/actions/workflows/lint.yaml/badge.svg?branch=master
  [lint-status-url]: https://github.com/grokify/rchooks/actions/workflows/lint.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/rchooks
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/rchooks
