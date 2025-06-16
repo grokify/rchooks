@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-lambda-go v1.49.0
 	github.com/grokify/go-ringcentral-client v0.3.29
 	github.com/grokify/goauth v0.23.14
-	github.com/grokify/mogo v0.70.4
+	github.com/grokify/mogo v0.70.8
 	github.com/jessevdk/go-flags v1.6.1
 )
 
