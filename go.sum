@@ -39,8 +39,8 @@ github.com/grokify/go-scim-client v0.1.28 h1:PDDbI2Gy7rLh53FRzzzwGv5SHT5an/ETBpt
 github.com/grokify/go-scim-client v0.1.28/go.mod h1:ZwNpc5KA0xx4X1k+aMY9wRSqpUZJ7ZobBw73Mn4EO+4=
 github.com/grokify/goauth v0.23.14 h1:CTi4BYwpTOQlJOWlFJPUQvjKiclzU3160jT9NoJQk48=
 github.com/grokify/goauth v0.23.14/go.mod h1:iuq7DhO2Q8xwQp8sUdiFJQQelyGVIKtUTklCFqu3SQ4=
-github.com/grokify/mogo v0.70.9 h1:54MP/PC4W6r2janLLAfiLY61lJZhvGzOg7gHd75SCtg=
-github.com/grokify/mogo v0.70.9/go.mod h1:7tfFd9wGliYOv227IQlOMah/9MLH+u0i62MesfwJUKU=
+github.com/grokify/mogo v0.70.10 h1:GrTIwggfUyIT7pYT7kCzLu6pb4kZvsNGMRKYMVs97mM=
+github.com/grokify/mogo v0.70.10/go.mod h1:7tfFd9wGliYOv227IQlOMah/9MLH+u0i62MesfwJUKU=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
 github.com/huandu/xstrings v1.5.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/jessevdk/go-flags v1.6.1 h1:Cvu5U8UGrLay1rZfv/zP7iLpSHGUZ/Ou68T0iX1bBK4=
