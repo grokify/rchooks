@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-lambda-go v1.49.0
 	github.com/grokify/go-ringcentral-client v0.3.30
 	github.com/grokify/goauth v0.23.19
-	github.com/grokify/mogo v0.70.18
+	github.com/grokify/mogo v0.70.21
 	github.com/jessevdk/go-flags v1.6.1
 )
 
@@ -39,7 +39,7 @@ require (
 	golang.org/x/exp v0.0.0-20250819193227-8b4c13bb791b // indirect
 	golang.org/x/net v0.43.0 // indirect
 	golang.org/x/oauth2 v0.30.0 // indirect
-	golang.org/x/sys v0.35.0 // indirect
+	golang.org/x/sys v0.36.0 // indirect
 	golang.org/x/text v0.28.0 // indirect
 	google.golang.org/api v0.248.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250818200422-3122310a409c // indirect
