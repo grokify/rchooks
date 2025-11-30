@@ -33,10 +33,10 @@ github.com/googleapis/enterprise-certificate-proxy v0.3.7 h1:zrn2Ee/nWmHulBx5sAV
 github.com/googleapis/enterprise-certificate-proxy v0.3.7/go.mod h1:MkHOF77EYAE7qfSuSS9PU6g4Nt4e11cnsDUowfwewLA=
 github.com/googleapis/gax-go/v2 v2.15.0 h1:SyjDc1mGgZU5LncH8gimWo9lW1DtIfPibOG81vgd/bo=
 github.com/googleapis/gax-go/v2 v2.15.0/go.mod h1:zVVkkxAQHa1RQpg9z2AUCMnKhi0Qld9rcmyfL1OZhoc=
-github.com/grokify/go-ringcentral-client v0.3.31 h1:vjUWR5SdHeQVSuc+luKfre9G2odjryyr5pL5YbNeHus=
-github.com/grokify/go-ringcentral-client v0.3.31/go.mod h1:2XYIhI8xiV0M3kwdBW+PyS5kkBItGGFG8HMgQLlyaUM=
-github.com/grokify/go-scim-client v0.1.29 h1:m2XFb8EOxkOsma7wkJxvx0MsaAgJ7fMbKqCINz/NYEg=
-github.com/grokify/go-scim-client v0.1.29/go.mod h1:IQMq4PZ5YIcR3JDtxOc8+sq8L8NARdl1TUIE+CGKdmE=
+github.com/grokify/go-ringcentral-client v0.3.32 h1:Q2/L22WiNjkNT+ergMrbRnHekeQhqQj8FmQQ5ez9mmE=
+github.com/grokify/go-ringcentral-client v0.3.32/go.mod h1:U9GiKN1SI/pBqBv4TfswlKyrLIzujOrEH1RZJk9u+Ug=
+github.com/grokify/go-scim-client v0.1.31 h1:offDkCwCfg5SsJQ4ASf6fqXn5GZgLzNQTVB5Gn/UZ+s=
+github.com/grokify/go-scim-client v0.1.31/go.mod h1:m2PVw2oxXtEviu6Gs42UEPLReM0Ikafi0aVJr77Ii1g=
 github.com/grokify/goauth v0.23.27 h1:DClguxUJFwc5hNJeZwfWh8qqXtmNioAId5xhvIlR70s=
 github.com/grokify/goauth v0.23.27/go.mod h1:fDkkKbiomsc3OgAFi/qhEXP/y7ghEqfuWDbiZeHvWV0=
 github.com/grokify/mogo v0.71.10 h1:kz7zJMB9TQ3FbLpqsYnZEoM7WOKxQqE44cAAGzoVZns=
