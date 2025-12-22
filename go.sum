@@ -39,8 +39,8 @@ github.com/grokify/go-scim-client v0.1.31 h1:offDkCwCfg5SsJQ4ASf6fqXn5GZgLzNQTVB
 github.com/grokify/go-scim-client v0.1.31/go.mod h1:m2PVw2oxXtEviu6Gs42UEPLReM0Ikafi0aVJr77Ii1g=
 github.com/grokify/goauth v0.23.27 h1:DClguxUJFwc5hNJeZwfWh8qqXtmNioAId5xhvIlR70s=
 github.com/grokify/goauth v0.23.27/go.mod h1:fDkkKbiomsc3OgAFi/qhEXP/y7ghEqfuWDbiZeHvWV0=
-github.com/grokify/mogo v0.72.3 h1:7sQp3T2yiS4IrDvE07G3L4RmOZpCBxGCqDLxDUygyYU=
-github.com/grokify/mogo v0.72.3/go.mod h1:3UOaBu4rJmNZ/RCrtBiDcNv1tHUFW1ydrq0i5TxOmP8=
+github.com/grokify/mogo v0.72.5 h1:1nq2bCcGovhiNxvSk9AGrjBQP9N7XHCTQRsw3lMTEMU=
+github.com/grokify/mogo v0.72.5/go.mod h1:vHAL2gTwcw1a4C+XOIu2fySerZFE860iCPKYVR5b/ms=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
 github.com/huandu/xstrings v1.5.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/jessevdk/go-flags v1.6.1 h1:Cvu5U8UGrLay1rZfv/zP7iLpSHGUZ/Ou68T0iX1bBK4=
@@ -79,8 +79,8 @@ go.opentelemetry.io/otel/trace v1.38.0 h1:Fxk5bKrDZJUH+AMyyIXGcFAPah0oRcT+LuNtJr
 go.opentelemetry.io/otel/trace v1.38.0/go.mod h1:j1P9ivuFsTceSWe1oY+EeW3sc+Pp42sO++GHkg4wwhs=
 golang.org/x/crypto v0.46.0 h1:cKRW/pmt1pKAfetfu+RCEvjvZkA9RimPbh7bhFjGVBU=
 golang.org/x/crypto v0.46.0/go.mod h1:Evb/oLKmMraqjZ2iQTwDwvCtJkczlDuTmdJXoZVzqU0=
-golang.org/x/exp v0.0.0-20251209150349-8475f28825e9 h1:MDfG8Cvcqlt9XXrmEiD4epKn7VJHZO84hejP9Jmp0MM=
-golang.org/x/exp v0.0.0-20251209150349-8475f28825e9/go.mod h1:EPRbTFwzwjXj9NpYyyrvenVh9Y+GFeEvMNh7Xuz7xgU=
+golang.org/x/exp v0.0.0-20251219203646-944ab1f22d93 h1:fQsdNF2N+/YewlRZiricy4P1iimyPKZ/xwniHj8Q2a0=
+golang.org/x/exp v0.0.0-20251219203646-944ab1f22d93/go.mod h1:EPRbTFwzwjXj9NpYyyrvenVh9Y+GFeEvMNh7Xuz7xgU=
 golang.org/x/net v0.48.0 h1:zyQRTTrjc33Lhh0fBgT/H3oZq9WuvRR5gPC70xpDiQU=
 golang.org/x/net v0.48.0/go.mod h1:+ndRgGjkh8FGtu1w1FGbEC31if4VrNVMuKTgcAAnQRY=
 golang.org/x/oauth2 v0.33.0 h1:4Q+qn+E5z8gPRJfmRy7C2gGG3T4jIprK6aSYgTXGRpo=

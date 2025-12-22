@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-lambda-go v1.51.0
 	github.com/grokify/go-ringcentral-client v0.3.33
 	github.com/grokify/goauth v0.23.27
-	github.com/grokify/mogo v0.72.3
+	github.com/grokify/mogo v0.72.5
 	github.com/jessevdk/go-flags v1.6.1
 )
 
@@ -36,7 +36,7 @@ require (
 	go.opentelemetry.io/otel/metric v1.38.0 // indirect
 	go.opentelemetry.io/otel/trace v1.38.0 // indirect
 	golang.org/x/crypto v0.46.0 // indirect
-	golang.org/x/exp v0.0.0-20251209150349-8475f28825e9 // indirect
+	golang.org/x/exp v0.0.0-20251219203646-944ab1f22d93 // indirect
 	golang.org/x/net v0.48.0 // indirect
 	golang.org/x/oauth2 v0.33.0 // indirect
 	golang.org/x/sys v0.39.0 // indirect
