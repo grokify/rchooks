@@ -1,11 +1,29 @@
 # RCHooks - RingCentral Webhook Tools
 
-[![Build Status][build-status-svg]][build-status-url]
-[![Lint Status][lint-status-svg]][lint-status-url]
+[![Go CI][go-ci-svg]][go-ci-url]
+[![Go Lint][go-lint-svg]][go-lint-url]
+[![Go SAST][go-sast-svg]][go-sast-url]
 [![Go Report Card][goreport-svg]][goreport-url]
 [![Docs][docs-godoc-svg]][docs-godoc-url]
+[![Visualization][viz-svg]][viz-url]
 [![License][license-svg]][license-url]
-[![Video][video-svg]][video-url]
+
+ [go-ci-svg]: https://github.com/grokify/rchooks/actions/workflows/go-ci.yaml/badge.svg?branch=main
+ [go-ci-url]: https://github.com/grokify/rchooks/actions/workflows/go-ci.yaml
+ [go-lint-svg]: https://github.com/grokify/rchooks/actions/workflows/go-lint.yaml/badge.svg?branch=main
+ [go-lint-url]: https://github.com/grokify/rchooks/actions/workflows/go-lint.yaml
+ [go-sast-svg]: https://github.com/grokify/rchooks/actions/workflows/go-sast-codeql.yaml/badge.svg?branch=main
+ [go-sast-url]: https://github.com/grokify/rchooks/actions/workflows/go-sast-codeql.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/rchooks
+ [goreport-url]: https://goreportcard.com/report/github.com/grokify/rchooks
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/rchooks
+ [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/rchooks
+ [viz-svg]: https://img.shields.io/badge/visualizaton-Go-blue.svg
+ [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=grokify%2Frchooks
+ [loc-svg]: https://tokei.rs/b1/github/grokify/rchooks
+ [repo-url]: https://github.com/grokify/rchooks
+ [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
+ [license-url]: https://github.com/grokify/rchooks/blob/master/LICENSE
 
 `rchooks` is a toolset for creating, listing, recreating, and deleting RingCentral webhooks. It is especially useful in development when working with ngrok and when webhooks are blocked when test servers are taken down and non-responsive. It includes the following:
 
@@ -100,16 +118,3 @@ Set the following enviroment variables:
 * `I/O operation is failed. Details: [Read timed out]`
 * `Webhook response exceeds max size. Read bytes count: [1024]`
 * `Webhook responses with code: [404], reason: [Not Found]`
-
- [build-status-svg]: https://github.com/grokify/rchooks/actions/workflows/ci.yaml/badge.svg?branch=master
- [build-status-url]: https://github.com/grokify/rchooks/actions/workflows/ci.yaml
- [lint-status-svg]: https://github.com/grokify/rchooks/actions/workflows/lint.yaml/badge.svg?branch=master
- [lint-status-url]: https://github.com/grokify/rchooks/actions/workflows/lint.yaml
- [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/rchooks
- [goreport-url]: https://goreportcard.com/report/github.com/grokify/rchooks
- [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/rchooks
- [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/rchooks
- [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/grokify/rchooks/blob/master/LICENSE
- [video-svg]: https://img.shields.io/badge/tutorial-YouTube-blue.svg
- [video-url]: https://youtu.be/DYrzzJe8OyI
