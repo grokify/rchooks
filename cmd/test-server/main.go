@@ -14,7 +14,7 @@ import (
 func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	if token := strings.TrimSpace(r.Header.Get(rchooks.HeaderValidationToken)); len(token) > 0 {
 		w.Header().Set(rchooks.HeaderValidationToken, token)
-		log.Printf("INCOMING_WEBHOOK_VALIDATION_TOKEN [%v]", token)
+		log.Print("INCOMING_WEBHOOK_VALIDATION_TOKEN received")
 		return
 	}
 
