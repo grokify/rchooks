@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-lambda-go v1.55.0
 	github.com/grokify/go-ringcentral-client v0.3.33
 	github.com/grokify/goauth v0.23.30
-	github.com/grokify/mogo v0.74.7
+	github.com/grokify/mogo v0.75.0
 	github.com/jessevdk/go-flags v1.6.1
 )
 
@@ -25,7 +25,7 @@ require (
 	github.com/googleapis/enterprise-certificate-proxy v0.3.20 // indirect
 	github.com/googleapis/gax-go/v2 v2.23.0 // indirect
 	github.com/grokify/go-scim-client v0.1.32 // indirect
-	github.com/huandu/xstrings v1.5.0 // indirect
+	github.com/huandu/xstrings v1.6.1 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/martinlindhe/base36 v1.1.1 // indirect
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
@@ -33,14 +33,14 @@ require (
 	go.opentelemetry.io/otel v1.45.0 // indirect
 	go.opentelemetry.io/otel/metric v1.45.0 // indirect
 	go.opentelemetry.io/otel/trace v1.45.0 // indirect
-	golang.org/x/crypto v0.54.0 // indirect
-	golang.org/x/exp v0.0.0-20260727155853-b88d891fe743 // indirect
-	golang.org/x/net v0.57.0 // indirect
+	golang.org/x/crypto v0.57.0 // indirect
+	golang.org/x/exp v0.0.0-20260908205506-85c1c2202aba // indirect
+	golang.org/x/net v0.59.0 // indirect
 	golang.org/x/oauth2 v0.36.0 // indirect
-	golang.org/x/sys v0.47.0 // indirect
-	golang.org/x/text v0.40.0 // indirect
+	golang.org/x/sys v0.48.0 // indirect
+	golang.org/x/text v0.42.0 // indirect
 	google.golang.org/api v0.292.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260807164820-c8921c73eeea // indirect
 	google.golang.org/grpc v1.83.1 // indirect
-	google.golang.org/protobuf v1.36.11 // indirect
+	google.golang.org/protobuf v1.36.12 // indirect
 )
